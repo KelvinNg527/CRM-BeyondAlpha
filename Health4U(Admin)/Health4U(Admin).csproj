@@ -171,6 +171,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\login.cshtml" />
     <Content Include="Views\Billing\ViewBilling.cshtml" />
+    <Content Include="Views\Billing\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
