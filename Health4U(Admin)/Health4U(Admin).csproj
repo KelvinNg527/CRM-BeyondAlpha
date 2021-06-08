@@ -122,6 +122,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BillingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Controllers\RewardsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -172,11 +174,18 @@
     <Content Include="Views\Home\login.cshtml" />
     <Content Include="Views\Billing\ViewBilling.cshtml" />
     <Content Include="Views\Billing\Details.cshtml" />
+    <Content Include="Views\Report\Report.cshtml" />
+    <Content Include="Views\Rewards\Rewards.cshtml" />
+    <Content Include="Views\Rewards\AddRewards.cshtml" />
+    <Content Include="Views\Rewards\Details.cshtml" />
+    <Content Include="Views\Rewards\PendingBooking.cshtml" />
+    <Content Include="Views\Rewards\Booking.cshtml" />
+    <Content Include="Views\Rewards\PBDetails.cshtml" />
+    <Content Include="Views\Rewards\BDetails.cshtml" />
+    <Content Include="Views\Rewards\AddBooking.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
-    <Folder Include="Views\Login\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

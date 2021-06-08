@@ -6,18 +6,12 @@ using System.Web.Mvc;
 
 namespace Health4U_Admin_.Controllers
 {
-    public class BillingController : Controller
+    public class ReportController : Controller
     {
-        // GET: Billing
-        public ActionResult Viewbilling()
+        // GET: Report
+        public ActionResult Report()
         {
             return View();
         }
-
-        public ActionResult Details()
-        {
-            return View();
-        }
-
     }
 }
