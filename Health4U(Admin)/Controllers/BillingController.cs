@@ -19,5 +19,9 @@ namespace Health4U_Admin_.Controllers
             return View();
         }
 
+        public ActionResult Invoices()
+        {
+            return View();
+        }
     }
 }
