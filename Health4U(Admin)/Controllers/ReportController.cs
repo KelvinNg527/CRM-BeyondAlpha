@@ -13,5 +13,9 @@ namespace Health4U_Admin_.Controllers
         {
             return View();
         }
+        public ActionResult Print()
+        {
+            return View();
+        }
     }
 }
