@@ -2091,6 +2091,7 @@
     <Content Include="Views\User\AddNewUser.cshtml" />
     <Content Include="Views\Blacklist\Blacklist.cshtml" />
     <Content Include="Views\Blacklist\AddBlacklist.cshtml" />
+    <Content Include="Views\User\ViewUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
