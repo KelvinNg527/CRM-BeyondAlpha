@@ -7,7 +7,12 @@
 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
 <link href="~/Assets/css/styles2.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
-
+<!-- DataTables -->
+<link rel="stylesheet" href="~/Assets/plugins/fontawesome-free/css/all.min.css">
+<link rel="stylesheet" href="~/Assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="~/Assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+<link rel="stylesheet" href="~/Assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+<link href="~/Assets/css/styles.css" rel="stylesheet" />
 
 <div id="layoutSidenav">
 
@@ -23,7 +28,7 @@
                         View Booking
                     </div>
                     <div class="card-body">
-                        <table id="datatablesSimple">
+                        <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th>Appointment ID</th>
@@ -42,7 +47,7 @@
                                     <th>UserID</th>
                                     <th>Completion ID</th>
                                     <th>Rewards ID</th>
-                                    <th>Jalan Kacak Blok 4-4-3</th>
+                                    <th>Shipping Address</th>
                                     <th>Details</th>
                                 </tr>
                             </tfoot>
@@ -52,24 +57,6 @@
                                     <td>10/10/2019</td>
                                     <td>A10001</td>
                                     <td>A10001</td>
-                                    <th>Jalan Kacak Blok 4-4-3</th>
-                                    <td><a @Html.ActionLink("More", "BDetails", "Rewards")</a></td>
-
-                                </tr>
-                                <tr>
-                                    <td>A10001</td>
-                                    <td>10/10/2019</td>
-                                    <td>A10001</td>
-                                    <td>A10001</td>
-                                    <th>Jalan Kacak Blok 4-4-3</th>
-                                    <td><a @Html.ActionLink("More", "BDetails", "Rewards")</a></td>
-
-
-                                </tr>
-                                <tr>
-                                    <td>A10001</td>
-                                    <td>10/10/2019</td>
-                                    <td>A10001</td>
                                     <td>A10001</td>
                                     <th>Jalan Kacak Blok 4-4-3</th>
                                     <td><a @Html.ActionLink("More", "BDetails", "Rewards")</a></td>
@@ -79,23 +66,6 @@
                                     <td>A10001</td>
                                     <td>10/10/2019</td>
                                     <td>A10001</td>
-                                    <td>A10001</td>
-                                    <th>Jalan Kacak Blok 4-4-3</th>
-                                    <td><a @Html.ActionLink("More", "BDetails", "Rewards")</a></td>
-
-                                </tr>
-                                <tr>
-                                    <td>A10001</td>
-                                    <td>10/10/2019</td>
-                                    <td>A10001</td>
-                                    <td>A10001</td>
-                                    <th>Jalan Kacak Blok 4-4-3</th>
-                                    <td><a @Html.ActionLink("More", "BDetails", "Rewards")</a></td>
-
-                                </tr>
-                                <tr>
-                                    <td>A10001</td>
-                                    <td>10/10/2019</td>
                                     <td>A10001</td>
                                     <td>A10001</td>
                                     <th>Jalan Kacak Blok 4-4-3</th>
@@ -108,323 +78,391 @@
                                     <td>10/10/2019</td>
                                     <td>A10001</td>
                                     <td>A10001</td>
+                                    <td>A10001</td>
                                     <th>Jalan Kacak Blok 4-4-3</th>
                                     <td><a @Html.ActionLink("More", "BDetails", "Rewards")</a></td>
 
                                 </tr>
                                 <tr>
                                     <td>A10001</td>
-                                    <td>Blood Donor point hit 70%</td>
-                                    <td>Phone Case</td>
+                                    <td>10/10/2019</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+                                    <th>Jalan Kacak Blok 4-4-3</th>
+                                    <td><a @Html.ActionLink("More", "BDetails", "Rewards")</a></td>
+
+                                </tr>
+                                <tr>
+                                    <td>A10001</td>
+                                    <td>10/10/2019</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+                                    <th>Jalan Kacak Blok 4-4-3</th>
+                                    <td><a @Html.ActionLink("More", "BDetails", "Rewards")</a></td>
+
+                                </tr>
+                                <tr>
+                                    <td>A10001</td>
+                                    <td>10/10/2019</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+
+                                    <th>Jalan Kacak Blok 4-4-3</th>
+                                    <td><a @Html.ActionLink("More", "BDetails", "Rewards")</a></td>
 
 
                                 </tr>
                                 <tr>
                                     <td>A10001</td>
-                                    <td>Blood Donor point hit 70%</td>
-                                    <td>Phone Case</td>
+                                    <td>10/10/2019</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+
+                                    <th>Jalan Kacak Blok 4-4-3</th>
+                                    <td><a @Html.ActionLink("More", "BDetails", "Rewards")</a></td>
+
+                                </tr>
+                                <tr>
+                                    <td>A10001</td>
+                                    <td>10/10/2019</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+
+                                    <th>Jalan Kacak Blok 4-4-3</th>
+                                    <td><a @Html.ActionLink("More", "BDetails", "Rewards")</a></td>
+
+                                </tr>
+                                <tr>
+                                    <td>A10001</td>
+                                    <td>10/10/2019</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+
+                                    <th>Jalan Kacak Blok 4-4-3</th>
+                                    <td><a @Html.ActionLink("More", "BDetails", "Rewards")</a></td>
 
 
                                 </tr>
                                 <tr>
                                     <td>A10001</td>
-                                    <td>Blood Donor point hit 70%</td>
-                                    <td>Phone Case</td>
+                                    <td>10/10/2019</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+
+                                    <th>Jalan Kacak Blok 4-4-3</th>
+                                    <td><a @Html.ActionLink("More", "BDetails", "Rewards")</a></td>
 
 
                                 </tr>
                                 <tr>
                                     <td>A10001</td>
-                                    <td>Blood Donor point hit 70%</td>
-                                    <td>Phone Case</td>
+                                    <td>10/10/2019</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+
+                                    <th>Jalan Kacak Blok 4-4-3</th>
+                                    <td><a @Html.ActionLink("More", "BDetails", "Rewards")</a></td>
 
 
                                 </tr>
                                 <tr>
                                     <td>A10001</td>
-                                    <td>Blood Donor point hit 70%</td>
-                                    <td>Phone Case</td>
+                                    <td>10/10/2019</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+
+                                    <th>Jalan Kacak Blok 4-4-3</th>
+                                    <td><a @Html.ActionLink("More", "BDetails", "Rewards")</a></td>
 
 
                                 </tr>
                                 <tr>
                                     <td>A10001</td>
-                                    <td>Blood Donor point hit 70%</td>
-                                    <td>Phone Case</td>
+                                    <td>10/10/2019</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+
+                                    <th>Jalan Kacak Blok 4-4-3</th>
+                                    <td><a @Html.ActionLink("More", "BDetails", "Rewards")</a></td>
 
 
                                 </tr>
                                 <tr>
                                     <td>A10001</td>
-                                    <td>Blood Donor point hit 70%</td>
-                                    <td>Phone Case</td>
+                                    <td>10/10/2019</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+
+                                    <th>Jalan Kacak Blok 4-4-3</th>
+                                    <td><a @Html.ActionLink("More", "BDetails", "Rewards")</a></td>
 
 
                                 </tr>
                                 <tr>
                                     <td>A10001</td>
-                                    <td>Blood Donor point hit 70%</td>
-                                    <td>Phone Case</td>
+                                    <td>10/10/2019</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+
+                                    <th>Jalan Kacak Blok 4-4-3</th>
+                                    <td><a @Html.ActionLink("More", "BDetails", "Rewards")</a></td>
 
                                 </tr>
                                 <tr>
                                     <td>A10001</td>
-                                    <td>Blood Donor point hit 70%</td>
-                                    <td>Phone Case</td>
+                                    <td>10/10/2019</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+
+                                    <th>Jalan Kacak Blok 4-4-3</th>
+                                    <td><a @Html.ActionLink("More", "BDetails", "Rewards")</a></td>
 
                                 </tr>
                                 <tr>
                                     <td>A10001</td>
-                                    <td>Blood Donor point hit 70%</td>
-                                    <td>Phone Case</td>
+                                    <td>10/10/2019</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+
+                                    <th>Jalan Kacak Blok 4-4-3</th>
+                                    <td><a @Html.ActionLink("More", "BDetails", "Rewards")</a></td>
 
                                 </tr>
                                 <tr>
                                     <td>A10001</td>
-                                    <td>Blood Donor point hit 70%</td>
-                                    <td>Phone Case</td>
+                                    <td>10/10/2019</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+
+                                    <th>Jalan Kacak Blok 4-4-3</th>
+                                    <td><a @Html.ActionLink("More", "BDetails", "Rewards")</a></td>
 
                                 </tr>
                                 <tr>
                                     <td>A10001</td>
-                                    <td>Blood Donor point hit 70%</td>
-                                    <td>Phone Case</td>
+                                    <td>10/10/2019</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+
+                                    <th>Jalan Kacak Blok 4-4-3</th>
+                                    <td><a @Html.ActionLink("More", "BDetails", "Rewards")</a></td>
 
                                 </tr>
                                 <tr>
                                     <td>A10001</td>
-                                    <td>Blood Donor point hit 70%</td>
-                                    <td>Phone Case</td>
+                                    <td>10/10/2019</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+
+                                    <th>Jalan Kacak Blok 4-4-3</th>
+                                    <td><a @Html.ActionLink("More", "BDetails", "Rewards")</a></td>
 
                                 </tr>
                                 <tr>
                                     <td>A10001</td>
-                                    <td>Blood Donor point hit 70%</td>
-                                    <td>Phone Case</td>
+                                    <td>10/10/2019</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+
+                                    <th>Jalan Kacak Blok 4-4-3</th>
+                                    <td><a @Html.ActionLink("More", "BDetails", "Rewards")</a></td>
 
                                 </tr>
                                 <tr>
                                     <td>A10001</td>
-                                    <td>A1003</td>
-                                    <td>Gold</td>
-                                    <td>3</td>
-                                    <td>B1003</td>
-                                    <td>B1003</td>
-                                    <td>1000</td>
+                                    <td>10/10/2019</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+
+                                    <th>Jalan Kacak Blok 4-4-3</th>
+                                    <td><a @Html.ActionLink("More", "BDetails", "Rewards")</a></td>
 
                                 </tr>
                                 <tr>
                                     <td>A10001</td>
-                                    <td>A1003</td>
-                                    <td>Gold</td>
-                                    <td>3</td>
-                                    <td>B1003</td>
-                                    <td>B1003</td>
-                                    <td>1000</td>
+                                    <td>10/10/2019</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+
+                                    <th>Jalan Kacak Blok 4-4-3</th>
+                                    <td><a @Html.ActionLink("More", "BDetails", "Rewards")</a></td>
 
                                 </tr>
                                 <tr>
                                     <td>A10001</td>
-                                    <td>A1003</td>
-                                    <td>Gold</td>
-                                    <td>3</td>
-                                    <td>B1003</td>
-                                    <td>B1003</td>
-                                    <td>1000</td>
+                                    <td>10/10/2019</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+
+                                    <th>Jalan Kacak Blok 4-4-3</th>
+                                    <td><a @Html.ActionLink("More", "BDetails", "Rewards")</a></td>
 
                                 </tr>
                                 <tr>
                                     <td>A10001</td>
-                                    <td>A1003</td>
-                                    <td>Gold</td>
-                                    <td>3</td>
-                                    <td>B1003</td>
-                                    <td>B1003</td>
-                                    <td>1000</td>
+                                    <td>10/10/2019</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+
+                                    <th>Jalan Kacak Blok 4-4-3</th>
+                                    <td><a @Html.ActionLink("More", "BDetails", "Rewards")</a></td>
 
                                 </tr>
                                 <tr>
-                                    <td>Gavin Joyce</td>
-                                    <td>Developer</td>
-                                    <td>Edinburgh</td>
-                                    <td>42</td>
-                                    <td>2010/12/22</td>
-                                    <td>$92,575</td>
+                                    <td>A10001</td>
+                                    <td>10/10/2019</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+
+                                    <th>Jalan Kacak Blok 4-4-3</th>
+                                    <td><a @Html.ActionLink("More", "BDetails", "Rewards")</a></td>
                                 </tr>
                                 <tr>
-                                    <td>Jennifer Chang</td>
-                                    <td>Regional Director</td>
-                                    <td>Singapore</td>
-                                    <td>28</td>
-                                    <td>2010/11/14</td>
-                                    <td>$357,650</td>
+                                    <td>A10001</td>
+                                    <td>10/10/2019</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+
+                                    <th>Jalan Kacak Blok 4-4-3</th>
+                                    <td><a @Html.ActionLink("More", "BDetails", "Rewards")</a></td>
                                 </tr>
                                 <tr>
-                                    <td>Brenden Wagner</td>
-                                    <td>Software Engineer</td>
-                                    <td>San Francisco</td>
-                                    <td>28</td>
-                                    <td>2011/06/07</td>
-                                    <td>$206,850</td>
+                                    <td>A10001</td>
+                                    <td>10/10/2019</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+
+                                    <th>Jalan Kacak Blok 4-4-3</th>
+                                    <td><a @Html.ActionLink("More", "BDetails", "Rewards")</a></td>
                                 </tr>
                                 <tr>
-                                    <td>Fiona Green</td>
-                                    <td>Chief Operating Officer (COO)</td>
-                                    <td>San Francisco</td>
-                                    <td>48</td>
-                                    <td>2010/03/11</td>
-                                    <td>$850,000</td>
+                                    <td>A10001</td>
+                                    <td>10/10/2019</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+
+                                    <th>Jalan Kacak Blok 4-4-3</th>
+                                    <td><a @Html.ActionLink("More", "BDetails", "Rewards")</a></td>
                                 </tr>
                                 <tr>
-                                    <td>Shou Itou</td>
-                                    <td>Regional Marketing</td>
-                                    <td>Tokyo</td>
-                                    <td>20</td>
-                                    <td>2011/08/14</td>
-                                    <td>$163,000</td>
+                                    <td>A10001</td>
+                                    <td>10/10/2019</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+
+                                    <th>Jalan Kacak Blok 4-4-3</th>
+                                    <td><a @Html.ActionLink("More", "BDetails", "Rewards")</a></td>
                                 </tr>
                                 <tr>
-                                    <td>Michelle House</td>
-                                    <td>Integration Specialist</td>
-                                    <td>Sidney</td>
-                                    <td>37</td>
-                                    <td>2011/06/02</td>
-                                    <td>$95,400</td>
+                                    <td>A10001</td>
+                                    <td>10/10/2019</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+
+                                    <th>Jalan Kacak Blok 4-4-3</th>
+                                    <td><a @Html.ActionLink("More", "BDetails", "Rewards")</a></td>
                                 </tr>
 
                                 <tr>
-                                    <td>Gavin Cortez</td>
-                                    <td>Team Leader</td>
-                                    <td>San Francisco</td>
-                                    <td>22</td>
-                                    <td>2008/10/26</td>
-                                    <td>$235,500</td>
+                                    <td>A10001</td>
+                                    <td>10/10/2019</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+
+                                    <th>Jalan Kacak Blok 4-4-3</th>
+                                    <td><a @Html.ActionLink("More", "BDetails", "Rewards")</a></td>
                                 </tr>
                                 <tr>
-                                    <td>Martena Mccray</td>
-                                    <td>Post-Sales support</td>
-                                    <td>Edinburgh</td>
-                                    <td>46</td>
-                                    <td>2011/03/09</td>
-                                    <td>$324,050</td>
+                                    <td>A10001</td>
+                                    <td>10/10/2019</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+
+                                    <th>Jalan Kacak Blok 4-4-3</th>
+                                    <td><a @Html.ActionLink("More", "BDetails", "Rewards")</a></td>
                                 </tr>
                                 <tr>
-                                    <td>Unity Butler</td>
-                                    <td>Marketing Designer</td>
-                                    <td>San Francisco</td>
-                                    <td>47</td>
-                                    <td>2009/12/09</td>
-                                    <td>$85,675</td>
+                                    <td>A10001</td>
+                                    <td>10/10/2019</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+
+                                    <th>Jalan Kacak Blok 4-4-3</th>
+                                    <td><a @Html.ActionLink("More", "BDetails", "Rewards")</a></td>
                                 </tr>
                                 <tr>
-                                    <td>Howard Hatfield</td>
-                                    <td>Office Manager</td>
-                                    <td>San Francisco</td>
-                                    <td>51</td>
-                                    <td>2008/12/16</td>
-                                    <td>$164,500</td>
+                                    <td>A10001</td>
+                                    <td>10/10/2019</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+
+                                    <th>Jalan Kacak Blok 4-4-3</th>
+                                    <td><a @Html.ActionLink("More", "BDetails", "Rewards")</a></td>
                                 </tr>
                                 <tr>
-                                    <td>Hope Fuentes</td>
-                                    <td>Secretary</td>
-                                    <td>San Francisco</td>
-                                    <td>41</td>
-                                    <td>2010/02/12</td>
-                                    <td>$109,850</td>
+                                    <td>A10001</td>
+                                    <td>10/10/2019</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+
+                                    <th>Jalan Kacak Blok 4-4-3</th>
+                                    <td><a @Html.ActionLink("More", "BDetails", "Rewards")</a></td>
                                 </tr>
                                 <tr>
-                                    <td>Vivian Harrell</td>
-                                    <td>Financial Controller</td>
-                                    <td>San Francisco</td>
-                                    <td>62</td>
-                                    <td>2009/02/14</td>
-                                    <td>$452,500</td>
+                                    <td>A10001</td>
+                                    <td>10/10/2019</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+
+                                    <th>Jalan Kacak Blok 4-4-3</th>
+                                    <td><a @Html.ActionLink("More", "BDetails", "Rewards")</a></td>
                                 </tr>
                                 <tr>
-                                    <td>Timothy Mooney</td>
-                                    <td>Office Manager</td>
-                                    <td>London</td>
-                                    <td>37</td>
-                                    <td>2008/12/11</td>
-                                    <td>$136,200</td>
+                                    <td>A10001</td>
+                                    <td>10/10/2019</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+                                    <td>A10001</td>
+
+                                    <th>Jalan Kacak Blok 4-4-3</th>
+                                    <td><a @Html.ActionLink("More", "BDetails", "Rewards")</a></td>
                                 </tr>
 
 
-                                <tr>
-                                    <td>Thor Walton</td>
-                                    <td>Developer</td>
-                                    <td>New York</td>
-                                    <td>61</td>
-                                    <td>2013/08/11</td>
-                                    <td>$98,540</td>
-                                </tr>
-                                <tr>
-                                    <td>Finn Camacho</td>
-                                    <td>Support Engineer</td>
-                                    <td>San Francisco</td>
-                                    <td>47</td>
-                                    <td>2009/07/07</td>
-                                    <td>$87,500</td>
-                                </tr>
-
-                                <tr>
-                                    <td>Zorita Serrano</td>
-                                    <td>Software Engineer</td>
-                                    <td>San Francisco</td>
-                                    <td>56</td>
-                                    <td>2012/06/01</td>
-                                    <td>$115,000</td>
-                                </tr>
-                                <tr>
-                                    <td>Jennifer Acosta</td>
-                                    <td>Junior Javascript Developer</td>
-                                    <td>Edinburgh</td>
-                                    <td>43</td>
-                                    <td>2013/02/01</td>
-                                    <td>$75,650</td>
-                                </tr>
-                                <tr>
-                                    <td>Cara Stevens</td>
-                                    <td>Sales Assistant</td>
-                                    <td>New York</td>
-                                    <td>46</td>
-                                    <td>2011/12/06</td>
-                                    <td>$145,600</td>
-                                </tr>
-
-                                <tr>
-                                    <td>Jonas Alexander</td>
-                                    <td>Developer</td>
-                                    <td>San Francisco</td>
-                                    <td>30</td>
-                                    <td>2010/07/14</td>
-                                    <td>$86,500</td>
-                                </tr>
-                                <tr>
-                                    <td>Shad Decker</td>
-                                    <td>Regional Director</td>
-                                    <td>Edinburgh</td>
-                                    <td>51</td>
-                                    <td>2008/11/13</td>
-                                    <td>$183,000</td>
-                                </tr>
-                                <tr>
-                                    <td>Michael Bruce</td>
-                                    <td>Javascript Developer</td>
-                                    <td>Singapore</td>
-                                    <td>29</td>
-                                    <td>2011/06/27</td>
-                                    <td>$183,000</td>
-                                </tr>
-                                <tr>
-                                    <td>Donna Snider</td>
-                                    <td>Customer Support</td>
-                                    <td>New York</td>
-                                    <td>27</td>
-                                    <td>2011/01/25</td>
-                                    <td>$112,000</td>
-
-                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -435,6 +473,49 @@
 
     </div>
 </div>
+<!-- /.card -->
+<!-- /.container-fluid -->
+<!-- jQuery -->
+<script src="~/Assets/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="~/Assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables  & Plugins -->
+<script src="~/Assets/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="~/Assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="~/Assets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="~/Assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="~/Assets/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src=".~/Assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="~/Assets/plugins/jszip/jszip.min.js"></script>
+<script src="~/Assets/plugins/pdfmake/pdfmake.min.js"></script>
+<script src="~/Assets/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="~/Assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="~/Assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="~/Assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<!-- AdminLTE App -->
+<!-- AdminLTE for demo purposes -->
+<!-- Page specific script -->
+<script>
+    $(function () {
+        $("#example1").DataTable({
+            "responsive": true, "lengthChange": false, "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
+    });
+</script>
+
+  
+
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
 

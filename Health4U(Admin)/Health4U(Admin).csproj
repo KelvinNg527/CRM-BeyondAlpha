@@ -120,6 +120,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BillingController.cs" />
     <Compile Include="Controllers\BlacklistController.cs" />
+    <Compile Include="Controllers\DiseaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\RewardsController.cs" />
@@ -2091,6 +2092,8 @@
     <Content Include="Views\User\AddNewUser.cshtml" />
     <Content Include="Views\Blacklist\Blacklist.cshtml" />
     <Content Include="Views\Blacklist\AddBlacklist.cshtml" />
+    <Content Include="Views\Disease\Disease.cshtml" />
+    <Content Include="Views\Disease\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
