@@ -54,7 +54,7 @@ namespace DataLibrary.DataAccees
                 var param = new DynamicParameters();
                 if (data is String)
                 {
-                    param.Add("@Billings", data);
+                    param.Add("@BillID", data);
                     isSuccess = cnn.Execute(sql, param);
                 }
                 else

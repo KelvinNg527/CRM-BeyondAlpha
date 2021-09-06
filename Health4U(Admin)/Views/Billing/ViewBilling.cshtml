@@ -14,6 +14,46 @@
 <link rel="stylesheet" href="~/Assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 <link href="~/Assets/css/styles.css" rel="stylesheet" />
 
+<!---SweetAlert--->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".btnAlert").click(function (e) {
+            var id = $(e.currentTarget).data("user-id");
+            var arr = id.split(",");
+
+            swal({
+                confirmButtonText: "Yes",
+                title: "Confirmation?",
+                text: "Are you sure want to delete " + arr[0] + "?",
+                type: 'warning',
+                showCancelButton: true,
+                cancelButtonText: "No",
+                confirmButtonClass: "btn-danger",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },
+                function (isConfirm) {
+                    if (isConfirm) {
+                        swal("Deleted", "Bill has been successfully deleted", "success");
+                        var link = '@Url.Action("DeleteBill", "Billing",
+                                               routeValues: new { id = "_myid_" })';
+                        window.location.href= link.replace('_myid_', arr[0]);
+                         } else {
+                        swal("Cancelled", "Bill not yet deleted", "error");
+
+                            }
+                });
+
+            return false;
+
+        });
+    });
+
+</script>
+
 <div id="layoutSidenav">
 
     <div id="layoutSidenav_content">
@@ -42,7 +82,6 @@
                                             <th>Bill Date</th>
                                             <th>Package</th>
                                             <th>SubscribeMonth</th>
-                                            <th>AdminID</th>
                                             <th>Details</th>
                                         </tr>
 
@@ -50,38 +89,41 @@
                                     <tbody>
                                         @foreach (var item in Model)
                                         {
-                                        <tr>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.BillID)
-                                            </td>
+                                            <tr>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.BillID)
+                                                </td>
 
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.CorporateID)
-                                            </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.CorporateID)
+                                                </td>
 
-                                            <td>
-                                                @Convert.ToString(string.Format("{0:dd/MM/yyyy hh:mm tt}", item.BillDate))
+                                                <td>
+                                                    @Convert.ToString(string.Format("{0:dd/MM/yyyy hh:mm tt}", item.BillDate))
 
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.AdminID)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.PackageName)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.SubscribeMonth)
-                                            </td>
+                                                </td>
 
-                                         
-                                            <td>
-                                                <a href="@Url.Action("Details", "Billing",routeValues: new { id = item.BillID })">
-                                                    <button type="button" class="btn btn-outline-dark">
-                                                        <span class="fa fa-edit"></span>
-                                                    </button>
-                                                </a>
-                                            </td>
-                                        </tr>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.PackageName)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.SubscribeMonth)
+                                                </td>
+
+
+                                                <td>
+                                                    <a href="@Url.Action("Details", "Billing",routeValues: new { id = item.BillID })">
+                                                        <button type="button" class="btn btn-outline-dark">
+                                                            <span class="fa fa-edit"></span>
+                                                        </button>
+                                                    </a>
+                                                    <a>
+                                                        <button type="button" id="btnAlert" data-user-id="@(item.BillID)" class="btn btn-danger btnAlert">
+                                                            <span class="fa fa-trash"></span>
+                                                        </button>
+                                                    </a>
+                                                </td>
+                                            </tr>
                                         }
                                     </tbody>
 

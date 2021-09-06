@@ -29,8 +29,39 @@ namespace DataLibrary.BusinessLogic
             return SqlDataAccess.SelectData<Billings>(sql, new Billings() { BillID = BillID });
         }
 
+        public static int UpdateBill(string BillID, string CorporateID,
+          string AdminID, DateTime BillDate, int PackageID,
+          int SubscribeMonth)
+        {
 
-  
+            Billings data = new Billings
+            {
+                BillID = BillID,
+                CorporateID = CorporateID,
+                AdminID = AdminID,
+                BillDate = BillDate,
+                PackageID = PackageID,
+                SubscribeMonth = SubscribeMonth,
+            };
+
+            string sql = @"Update admin_billing
+                set 
+                   CorporateID=@CorporateID,
+                    AdminID=@AdminID,
+                    BillDate=@BillDate,
+                    PackageID=@PackageID,
+                    SubscribeMonth=@SubscribeMonth
+                    where BillID=@BillID";
+
+            return SqlDataAccess.SaveData(sql, data);
+        }
+
+        public static int DeleteBilling(string BillID)
+        {
+            string sql = @"delete from  admin_billing where BillID= @BillID;";
+            return SqlDataAccess.DeleteData(sql, BillID);
+        }
+
 
     }
 }

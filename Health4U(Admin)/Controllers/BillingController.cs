@@ -48,6 +48,7 @@ namespace Health4U_Admin_.Controllers
                 {
                     BillID = recordsSelected.BillID,
                     CorporateID = recordsSelected.CorporateID,
+                    Name = recordsSelected.Name,
                     BillDate = recordsSelected.BillDate,
                     PackageID = recordsSelected.PackageID,
                     PackageName = recordsSelected.PackageName,
@@ -62,6 +63,37 @@ namespace Health4U_Admin_.Controllers
             }
 
             return RedirectToAction("ViewBilling", "Error in selecting ID");
+        }
+
+        [ValidateInput(false)]
+        public ActionResult DeleteBill(string id)
+        {
+
+            if (ModelState.IsValid)
+            {
+
+                var recordsDelete = DeleteBilling(id);
+
+                return RedirectToAction("ViewBilling");
+            }
+
+            return RedirectToAction("ViewBilling", "Error in deletion");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Details(Billings model)
+        {
+
+            if (model != null)
+            {
+                int recordsUpdated =
+                    UpdateBill(model.BillID,
+                 model.CorporateID,
+                 model.AdminID, model.BillDate,model.PackageID,model.SubscribeMonth);
+                return RedirectToAction("ViewBilling");
+            }
+            return View(model);
         }
 
 
