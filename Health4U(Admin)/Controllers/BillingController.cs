@@ -44,6 +44,20 @@ namespace Health4U_Admin_.Controllers
             {
 
                 var recordsSelected = SelectBill(id);
+                var recordsPackage= LoadPackage().ToList();
+                var recordsAdmin = LoadAdmin().ToList();
+                var recordsCorporate = LoadCorporate().ToList();
+
+
+                SelectList packagelist =new SelectList(recordsPackage, "PackageID", "PackageID");
+                ViewBag.PackageList = packagelist;
+
+                SelectList adminlist = new SelectList(recordsAdmin, "AdminID", "AdminID");
+                ViewBag.AdminList = adminlist;
+
+                SelectList corporatelist = new SelectList(recordsCorporate, "CorporateID", "CorporateID");
+                ViewBag.CorporateList = corporatelist;
+
                 var model = new Billings()
                 {
                     BillID = recordsSelected.BillID,
@@ -55,15 +69,16 @@ namespace Health4U_Admin_.Controllers
                     SubscribeMonth = recordsSelected.SubscribeMonth,
                     AdminID = recordsSelected.AdminID,
                     Total = recordsSelected.Total
-                };
+            };
 
-
-                //return RedirectToAction("Details");
+            
                 return View(model);
             }
 
             return RedirectToAction("ViewBilling", "Error in selecting ID");
         }
+
+     
 
         [ValidateInput(false)]
         public ActionResult DeleteBill(string id)

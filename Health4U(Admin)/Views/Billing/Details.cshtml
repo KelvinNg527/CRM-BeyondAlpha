@@ -5,8 +5,67 @@
     var id = Model.BillID;
 
 }
+<script src="~/Scripts/10.js"></script>
 
-@using (Html.BeginForm())
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<link href="~/Content/bootstrap-3.3.6-dist/css/bootstrap-theme.min.css" rel="stylesheet" />
+
+<script src="~/Content/bootstrap-3.3.6-dist/js/bootstrap.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+<script src="https://lipis.github.io/bootstrap-sweetalert/lib/sweet-alert.js"></script>
+<link href="~/Content/sweetalert/sweet-alert.css" rel="stylesheet" />
+
+<script type="text/javascript">
+    function validateData() {
+
+        if ($("#SubscribeMonth").val() < 0) {
+            swal("Invalid Subscribe Month!");
+            return false;
+        } else if ($("#SubscribeMonth").val() == "") {
+            swal("Please enter valid subscribe month !");
+            return false;
+        } else if ($("#SubscribeMonth").val() == 0) {
+            swal("Subscribe Month cannot be 0 !");
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    function Validate(ctl, event) {
+        event.preventDefault();
+        swal({
+            title: "Do you want to update it?",
+            text: "Please check Information before update !",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Update",
+            cancelButtonText: "Cancel",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        },
+            function (isConfirm) {
+                if (isConfirm) {
+                    if (validateData() == true) {
+                        $("#CreateForm").submit();
+                    }
+                } else {
+                    swal("Cancelled", "You have Cancelled an update!", "error");
+                }
+            });
+    }  
+
+</script>
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new
+{
+    id = "CreateForm"
+}))
 {
     @Html.AntiForgeryToken()
     <div id="layoutSidenav">
@@ -22,48 +81,48 @@
                         </header>
                         <div class="panel-body">
                             <form class="form-horizontal " method="get">
-                           
+
                                 <div class="form-group">
 
                                     <label class="col-sm-2 control-label" style="margin-top: 12px;">Corporate ID</label>
                                     <div class="col-sm-2">
-                                        @Html.EditorFor(model => model.CorporateID, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.DropDownListFor(model => model.CorporateID, (SelectList)ViewBag.CorporateList, new { style = "height: 33px;" })
+
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <div class="col-sm-2">
-                                        @Html.DisplayFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                                    </div>
-                                </div>
+
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label" style="margin-top: 12px;">Bill Date</label>
                                     <div class="col-sm-3">
-                                        @Html.EditorFor(model => model.BillDate, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.TextBoxFor(x => x.BillDate, "{0:yyyy-MM-ddTHH:mm:ss}", new
+                                                             {
+                                                                 @class = "form-control",
+                                                                 @type = "datetime-local"
+                                                             })
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label" style="margin-top: 12px;">AdminID</label>
                                     <div class="col-sm-2">
-                                        @Html.EditorFor(model => model.AdminID, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.DropDownListFor(model => model.AdminID, (SelectList)ViewBag.AdminList, new { style = "height: 33px;" })
                                     </div>
                                 </div>
-
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label" style="margin-top: 12px;">PackageID</label>
                                     <div class="col-sm-2">
-                                        @Html.EditorFor(model => model.PackageID, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.DropDownListFor(model => model.PackageID, (SelectList)ViewBag.PackageList, new { style = "height: 33px;" })
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label" style="margin-top: 12px;">SubscribeMonth</label>
                                     <div class="col-sm-2">
                                         @Html.EditorFor(model => model.SubscribeMonth, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.SubscribeMonth)
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label" style="margin-top: 12px;">Total</label>
                                     <div class="col-sm-4">
-                                        @Html.HiddenFor(model => model.Total, new { htmlAttributes = new { @class = "form-control" } })
                                         @Html.DisplayFor(model => model.Total, new { htmlAttributes = new { @class = "form-control" } })
                                     </div>
                                 </div>
@@ -76,10 +135,12 @@
                             <div class="form-group">
                                 <div class="col-lg-offset-2 col-lg-10">
                                     <br />
-                                    <button class="btn btn-dark" style="text-align:center;margin-left: 400px;" type="submit">Edit</button>
+                                    <button class="btn btn-dark"  id = "btnCreate"  onclick = "Validate(this, event);"  value = "Create" style="text-align:center;margin-left: 400px;" type="submit">Edit</button>
                                     <button class="btn btn-danger" style="text-align:center;margin-left: 70px;" type="button">Cancel</button>
-                                    <button class="btn btn-success" style="text-align:center;margin-left: 70px;" type="button"> @Html.ActionLink("Print", "Invoices", "Billing",routeValues: new
-                                                                                                                           { id = Model.BillID  },  htmlAttributes: null)</button>
+                                    <button class="btn btn-success" style="text-align:center;margin-left: 70px;" type="button">
+                                        @Html.ActionLink("Print", "Invoices", "Billing",routeValues: new
+                                   { id = Model.BillID  },  htmlAttributes: null)
+                                    </button>
 
                                 </div>
                             </div>

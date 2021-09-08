@@ -18,6 +18,28 @@ namespace DataLibrary.BusinessLogic
 	,(p.PricePerMonth * ab.SubscribeMonth) AS Total from package p join admin_billing ab on p.PackageID=ab.PackageID;";
             return SqlDataAccess.LoadData<Billings>(sql);
         }
+
+        public static List<Billings> LoadPackage()
+        {
+
+            string sql = @"SELECT PackageID from package";
+            return SqlDataAccess.LoadData<Billings>(sql);
+        }
+
+        public static List<Billings> LoadAdmin()
+        {
+
+            string sql = @"SELECT AdminID from admin";
+            return SqlDataAccess.LoadData<Billings>(sql);
+        }
+
+        public static List<Billings> LoadCorporate()
+        {
+
+            string sql = @"SELECT CorporateID from corporate";
+            return SqlDataAccess.LoadData<Billings>(sql);
+        }
+
         public static Billings SelectBill(string BillID)
         {
 
