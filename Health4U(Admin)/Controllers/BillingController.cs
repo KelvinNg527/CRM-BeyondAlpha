@@ -49,13 +49,13 @@ namespace Health4U_Admin_.Controllers
                 var recordsCorporate = LoadCorporate().ToList();
 
 
-                SelectList packagelist =new SelectList(recordsPackage, "PackageID", "PackageID");
+                SelectList packagelist =new SelectList(recordsPackage, "PackageID", "Package");
                 ViewBag.PackageList = packagelist;
 
                 SelectList adminlist = new SelectList(recordsAdmin, "AdminID", "AdminID");
                 ViewBag.AdminList = adminlist;
 
-                SelectList corporatelist = new SelectList(recordsCorporate, "CorporateID", "CorporateID");
+                SelectList corporatelist = new SelectList(recordsCorporate, "CorporateID", "Corporate");
                 ViewBag.CorporateList = corporatelist;
 
                 var model = new Billings()
@@ -117,8 +117,61 @@ namespace Health4U_Admin_.Controllers
         {
             if (ModelState.IsValid)
             {
-
+               
                 var recordsSelected = SelectBill(id);
+                var addressFormat = recordsSelected.Address;
+                var addressArr = addressFormat.Split(',');
+                var FAddress="";
+                var SAddress = "";
+                var TAddress = "";
+
+                for (int i = 0; i < addressArr.Length; i++)
+                {
+                    if (addressArr.Length == 3)
+                    {
+                        if (i == 0 || i == 1)
+                        {
+                            FAddress += addressArr[i] + ",";
+                        }
+                        else
+                        {
+                            SAddress += addressArr[i];
+                        }
+
+                    }
+                    else if (addressArr.Length == 4)
+                    {
+                        if (i == 0 || i == 1)
+                        {
+                            FAddress += addressArr[i] + ",";
+                        }
+                        else if (i == 2)
+                        {
+                            SAddress += addressArr[i] + ",";
+                        }
+                        else
+                        {
+                            SAddress += addressArr[i];
+
+                        }
+                    }
+                    else
+                    {
+                        if (i == 0 || i == 1)
+                        {
+                            FAddress += addressArr[i] + ",";
+                        }
+                        else if (i == 2 || i == 3)
+                        {
+                            SAddress += addressArr[i] + ",";
+                        }
+                        else
+                        {
+                            TAddress += addressArr[i];
+                        }
+                    }
+
+                }
                 var model = new Billings()
                 {
                     BillID = recordsSelected.BillID,
@@ -128,10 +181,13 @@ namespace Health4U_Admin_.Controllers
                     PackageName = recordsSelected.PackageName,
                     SubscribeMonth = recordsSelected.SubscribeMonth,
                     AdminID = recordsSelected.AdminID,
-                    PricePerMonth=recordsSelected.PricePerMonth,
+                    PricePerMonth = recordsSelected.PricePerMonth,
                     Total = recordsSelected.Total,
-                    Address=recordsSelected.Address,
-                    Name=recordsSelected.Name,
+                    Address = recordsSelected.Address,
+                    FAddress = FAddress,
+                    SAddress=SAddress,
+                    TAddress=TAddress,           
+                    Name =recordsSelected.Name,
                     TelephoneNo=recordsSelected.TelephoneNo
                 };
                 return View(model);

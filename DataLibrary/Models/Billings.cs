@@ -13,14 +13,26 @@ namespace DataLibrary.Models
         public DateTime BillDate { get; set; }
         public int PackageID { get; set; }
         public string PackageName { get; set; }
-
+        public string Package
+        {
+            get { return PackageID + "-" + PackageName; }
+            set { }
+        }
         [Required(ErrorMessage = "Please enter valid Subscribe Month")]
         public int SubscribeMonth { get; set; }
         public int PricePerMonth { get; set; }
         public string AdminID { get; set; }
         public int Total { get; set; }
         public string Name { get; set; }
+        public string Corporate
+        {
+            get { return CorporateID + "-" + Name; }
+            set { }
+        }
         public string Address { get; set; }
+        public string FAddress { get; set; }
+        public string SAddress { get; set; }
+        public string TAddress { get; set; }
         public string TelephoneNo { get; set; }
 
     }  

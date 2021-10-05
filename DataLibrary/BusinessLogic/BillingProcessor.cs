@@ -21,8 +21,7 @@ namespace DataLibrary.BusinessLogic
 
         public static List<Billings> LoadPackage()
         {
-
-            string sql = @"SELECT PackageID from package";
+            string sql = @"SELECT * from package";
             return SqlDataAccess.LoadData<Billings>(sql);
         }
 
@@ -36,7 +35,7 @@ namespace DataLibrary.BusinessLogic
         public static List<Billings> LoadCorporate()
         {
 
-            string sql = @"SELECT CorporateID from corporate";
+            string sql = @"SELECT * from corporate";
             return SqlDataAccess.LoadData<Billings>(sql);
         }
 
@@ -82,6 +81,23 @@ namespace DataLibrary.BusinessLogic
         {
             string sql = @"delete from  admin_billing where BillID= @BillID;";
             return SqlDataAccess.DeleteData(sql, BillID);
+        }
+
+        public static int CreateBill(string BillID, DateTime BillDate, int PackageID
+            ,string CorporateID,int SubscribeMonth)
+        {
+            Billings data = new Billings
+            {
+                BillID = BillID,
+                BillDate = BillDate,
+                PackageID = PackageID,
+                CorporateID=CorporateID,
+                SubscribeMonth=SubscribeMonth
+            };
+
+            string sql = @"insert into admin_billing(BillID,BillDate,PackageID,CorporateID,SubscribeMonth)
+            values(@BillID,@BillDate,@PackageID,@CorporateID,@SubscribeMonth);";
+            return SqlDataAccess.SaveData(sql, data);
         }
 
 
