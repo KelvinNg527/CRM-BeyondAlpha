@@ -1,0 +1,133 @@
+﻿@model DataLibrary.Models.Diseases
+
+@{
+    ViewBag.Title = "AddDisease";
+}
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+<script type="text/javascript">
+
+    function validateData() {
+        if ($("#Description").val() == "") {
+            swal("Disease  cannot be null!");
+            return false;
+        } else if ($("#Treatment").val() == "") {
+            swal("Treatment cannot be null!");
+            return false;
+        } else {
+            return true;
+        }
+
+    }
+
+    function Validate(ctl, event) {
+        event.preventDefault();
+        swal({
+            title: "Do you want to add a Disease?",
+            text: "Please check information before adding !",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#008000",
+            confirmButtonText: "Add",
+            cancelButtonText: "Cancel",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        },
+            function (isConfirm) {
+                if (isConfirm) {
+                    if (validateData() == true) {
+                        $("#CreateForm").submit();
+                    }
+                } else {
+                    swal("Cancelled", "You have Cancelled an adding action!", "error");
+                }
+            });
+    }
+</script>
+
+@using (Html.BeginForm("AddDisease", "Diseases", FormMethod.Post, new { enctype = "multipart/form-data" , id = "CreateForm"}))
+{
+@Html.AntiForgeryToken()
+<div id="layoutSidenav">
+
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4">
+                <section class="panel">
+                    <header class="panel-heading" style="font-size:250%">
+                        Add Disease
+                    </header>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <a style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;font-size:15px">
+                                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-lg-2", @style = "margin-top:26px" })
+                            </a>
+                            <div class="col-lg-10">
+                                @Html.TextBoxFor(m => m.Description, new { @style = "width:222px" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <a style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;font-size:15px">
+                                @Html.LabelFor(model => model.Treatment, htmlAttributes: new { @class = "control-label col-lg-2", @style = "margin-top:26px" })
+                            </a>
+                            <div class="col-lg-14">
+                                @Html.TextBoxFor(m => m.Treatment, new { @style = "width:222px" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <a style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;font-size:15px">
+                                @Html.LabelFor(model => model.Causes, htmlAttributes: new { @class = "control-label col-lg-2", @style = "margin-top:26px" })
+                            </a>
+                            <div class="col-lg-14">
+                                @Html.TextBoxFor(m => m.Causes, new { @style = "width:222px" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <a style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;font-size:15px">
+                                @Html.LabelFor(model => model.Symptoms, htmlAttributes: new { @class = "control-label col-lg-2", @style = "margin-top:26px" })
+                            </a>
+                            <div class="col-lg-14">
+                                @Html.TextBoxFor(m => m.Symptoms, new { @style = "width:222px" })
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="form-group">
+                                <a style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;font-size:15px">
+                                    @Html.LabelFor(model => model.Image1, htmlAttributes: new { @class = "control-label col-lg-2", @style = "margin-top:26px" })
+                                </a>
+                                <div class="col-lg-10">
+                                    <input type="file" name="file" id="file" style="width: 25%;" />
+                                    <br />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <a style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;font-size:15px">
+                                    @Html.LabelFor(model => model.Image2, htmlAttributes: new { @class = "control-label col-lg-2", @style = "margin-top:26px" })
+                                </a>
+                                <div class="col-lg-10">
+                                    <input type="file" name="file2" id="file2" style="width: 25%;" />
+                                    <br />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-lg-offset-2 col-lg-10">
+                                <button class="btn btn-primary" id="CreateForm" type="submit"
+                                        onclick="Validate(this, event);"
+                                        style="text-align:center;margin-left:310px;margin-top:30px">
+                                    Confirm
+                                </button>
+                                <button class="btn btn-danger" style="text-align:center;margin-left: 50px;margin-top:30px" type="reset">Reset</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+</div>
+}

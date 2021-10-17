@@ -13,6 +13,8 @@ namespace DataLibrary.Models
         public DateTime BillDate { get; set; }
         public int PackageID { get; set; }
         public string PackageName { get; set; }
+        public DateTime ExpiredDate { get; set; }
+
         public string Package
         {
             get { return PackageID + "-" + PackageName; }

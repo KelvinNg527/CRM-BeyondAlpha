@@ -77,6 +77,25 @@ namespace DataLibrary.BusinessLogic
             return SqlDataAccess.SaveData(sql, data);
         }
 
+        public static int UpdateExpired(DateTime ExpiredDate,int PackageID,string CorporateID)
+        {
+
+            Billings data = new Billings
+            {
+                ExpiredDate=ExpiredDate,
+                CorporateID=CorporateID,
+                PackageID=PackageID
+            };
+
+            string sql = @"Update Corporate
+                set 
+                   ExpiredDate=@ExpiredDate,
+                   PackageID=@PackageID
+                where CorporateID=@CorporateID;";
+
+            return SqlDataAccess.SaveData(sql, data);
+        }
+
         public static int DeleteBilling(string BillID)
         {
             string sql = @"delete from  admin_billing where BillID= @BillID;";

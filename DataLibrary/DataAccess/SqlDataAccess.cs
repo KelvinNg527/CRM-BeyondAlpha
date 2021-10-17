@@ -65,6 +65,26 @@ namespace DataLibrary.DataAccees
             }
         }
 
+        public static int DeleteDData<T>(string sql, T data)
+        {
+            using (var cnn = new MySqlConnection(GetConnectionString()))
+            {
+                var isSuccess = 0;
+                // cnn.Open();
+                var param = new DynamicParameters();
+                if (data is String)
+                {
+                    param.Add("@DiseaseID", data);
+                    isSuccess = cnn.Execute(sql, param);
+                }
+                else
+                {
+                    isSuccess = cnn.Execute(sql, data);
+                }
+                return isSuccess;
+            }
+        }
+
 
         public static T SelectData<T>(string sql, T data)
         {
@@ -79,6 +99,23 @@ namespace DataLibrary.DataAccees
                 }
 
                 return default(T); 
+            }
+        }
+
+        public static T SelectdData<T>(string sql, T data)
+        {
+            using (var cnn = new MySqlConnection(GetConnectionString()))
+            {
+                // cnn.Open();
+
+                if (data is Models.Diseases)
+                {
+                    var model = data as Diseases;
+                    return (T)Convert.ChangeType(cnn.QueryFirst<T>(sql,
+                      new { DiseaseID = model.DiseaseID }), typeof(T));
+                }
+
+                return default(T); //Default
             }
         }
 

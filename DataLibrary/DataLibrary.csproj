@@ -88,8 +88,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessLogic\BillingProcessor.cs" />
+    <Compile Include="BusinessLogic\DiseaseProcessor.cs" />
     <Compile Include="DataAccess\SqlDataAccess.cs" />
     <Compile Include="Models\Billings.cs" />
+    <Compile Include="Models\Disease.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

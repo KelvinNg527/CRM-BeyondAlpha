@@ -45,13 +45,16 @@ namespace Health4U_Admin_.Controllers
                         (1, lastBillID.BillID.Length - 1)) + 1).ToString("D5");
                 }
 
+                DateTime BillDate = model.BillDate;
+                DateTime modifiedDatetime = BillDate.AddMonths(model.SubscribeMonth);
+
 
                 int recordsCreated = CreateBill(app.BillID,
                    model.BillDate,
                    model.PackageID, model.CorporateID,
                     model.SubscribeMonth);
 
-
+                int recordsUpdate = UpdateExpired(modifiedDatetime,model.PackageID, model.CorporateID);
                 return RedirectToAction("Subscription");
             }
             return View(model);
