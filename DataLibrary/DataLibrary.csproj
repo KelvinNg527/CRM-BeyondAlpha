@@ -89,9 +89,12 @@
   <ItemGroup>
     <Compile Include="BusinessLogic\BillingProcessor.cs" />
     <Compile Include="BusinessLogic\DiseaseProcessor.cs" />
+    <Compile Include="BusinessLogic\RewardsProcessor.cs" />
     <Compile Include="DataAccess\SqlDataAccess.cs" />
     <Compile Include="Models\Billings.cs" />
+    <Compile Include="Models\claim_rewards_records.cs" />
     <Compile Include="Models\Disease.cs" />
+    <Compile Include="Models\Rewards.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

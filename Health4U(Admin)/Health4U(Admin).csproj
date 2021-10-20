@@ -151,7 +151,6 @@
     <Content Include="Assets\img\credit\paypal2.png" />
     <Content Include="Assets\img\credit\visa.png" />
     <Content Include="Assets\img\cross.png" />
-    <Content Include="Assets\img\error-404-monochrome.svg" />
     <Content Include="Assets\img\NoImage.png" />
     <Content Include="Assets\js\datatables-simple-demo.js" />
     <Content Include="Assets\js\scripts.js" />
@@ -2113,14 +2112,11 @@
     <Content Include="Views\Billing\ViewBilling.cshtml" />
     <Content Include="Views\Billing\Details.cshtml" />
     <Content Include="Views\Report\Report.cshtml" />
-    <Content Include="Views\Rewards\Rewards.cshtml" />
+    <Content Include="Views\Rewards\ViewRewards.cshtml" />
     <Content Include="Views\Rewards\AddRewards.cshtml" />
-    <Content Include="Views\Rewards\Details.cshtml" />
-    <Content Include="Views\Rewards\PendingBooking.cshtml" />
-    <Content Include="Views\Rewards\Booking.cshtml" />
-    <Content Include="Views\Rewards\PBDetails.cshtml" />
-    <Content Include="Views\Rewards\BDetails.cshtml" />
-    <Content Include="Views\Rewards\AddBooking.cshtml" />
+    <Content Include="Views\Rewards\RDetails.cshtml" />
+    <Content Include="Views\Rewards\ViewClaimRecords.cshtml" />
+    <Content Include="Views\Rewards\CDetails.cshtml" />
     <Content Include="Views\Billing\Invoices.cshtml" />
     <Content Include="Views\Report\Print.cshtml" />
     <Content Include="Views\User\AddNewUser.cshtml" />
