@@ -43,20 +43,26 @@
                         </div>
 
 
-
-
-
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                             <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                            Sales billing
+                            Disease
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
                         <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested">
-                                <a class="nav-link collapsed" href="http://localhost:49992/Billing/ViewBilling">View Billings</a>
+                                <a class="nav-link collapsed" href="http://localhost:49992/Diseases/ViewDisease">View Disease</a>
                             </nav>
-
+                            <nav class="sb-sidenav-menu-nested">
+                                <a class="nav-link collapsed" href="http://localhost:49992/Diseases/AddDisease">Add Disease</a>
+                            </nav>
                         </div>
+
+                        <a class="nav-link" href="http://localhost:49992/Billing/ViewBilling">
+                            <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                            Sales billing
+                        </a>
+
+                 
 
                         <a class="nav-link" href="http://localhost:49992/Subscription/Subscription">
                             <div class="sb-nav-link-icon"><i class="fas fa-window-close"></i></div>
@@ -77,11 +83,8 @@
                                 @Html.ActionLink("Add New User", "AddNewUser", "User", null, new { @class = "nav-link" })
                             </nav>
                         </div>
-                        <a class="nav-link" href="http://localhost:49992/Diseases/ViewDisease">
-                            <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                            Diseases
-                        </a>
-      
+
+
 
                     </div>
                 </div>

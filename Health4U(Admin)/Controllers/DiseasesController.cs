@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace Health4U_Admin_.Controllers
 {
+    using Newtonsoft.Json;
     using System.Drawing;
     using System.Runtime.Serialization.Formatters.Binary;
     using static DataLibrary.BusinessLogic.DiseaseProcessor;
@@ -20,10 +21,18 @@ namespace Health4U_Admin_.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddDisease(HttpPostedFileBase file, HttpPostedFileBase file2, Diseases model)
+        public ActionResult AddDisease(HttpPostedFileBase file, HttpPostedFileBase file2,
+            Diseases model,string[] txtbox, string[] txtCbox,string[] txtSbox)
         {
+
             if (model.Description != null)
             {
+                string json = JsonConvert.SerializeObject(txtbox);
+                string json1 = JsonConvert.SerializeObject(txtCbox);
+                string json2 = JsonConvert.SerializeObject(txtSbox);
+
+
+
                 List<Diseases> Diseases = new List<Diseases>();
                 Diseases app = new Diseases();
 
@@ -46,7 +55,7 @@ namespace Health4U_Admin_.Controllers
                 if (file == null && file2 == null)
                 {
                     var recordsCreated = CreateDisease(app.DiseaseID, model.Description,
-                model.Treatment, model.Causes, model.Symptoms, null, null);
+                   json, json1, json2, null, null);
                 }
                 else if (file2 == null)
                 {
@@ -54,7 +63,7 @@ namespace Health4U_Admin_.Controllers
                     ms.Seek(0, SeekOrigin.Begin);
                     byte[] array = ms.GetBuffer();
                     var recordsCreated = CreateDisease(app.DiseaseID, model.Description,
-                model.Treatment, model.Causes, model.Symptoms, array, null);
+               json, json1, json2, array, null);
                 }
                 else if (file == null)
                 {
@@ -62,7 +71,7 @@ namespace Health4U_Admin_.Controllers
                     ms.Seek(0, SeekOrigin.Begin);
                     byte[] array = ms.GetBuffer();
                     var recordsCreated = CreateDisease(app.DiseaseID, model.Description,
-                model.Treatment, model.Causes, model.Symptoms, null, array);
+                  json, json1, json2, null, array);
                 }
                 else
                 {
@@ -73,11 +82,11 @@ namespace Health4U_Admin_.Controllers
                     byte[] array2 = ms2.GetBuffer();
 
                     var recordsCreated = CreateDisease(app.DiseaseID, model.Description,
-                model.Treatment, model.Causes, model.Symptoms, array, array2);
+                    json, json1, json2, array, array2);
                 }
             }
             // after successfully uploading redirect the user
-            return RedirectToAction("ViewDisease", "Disease");
+            return RedirectToAction("ViewDisease", "Diseases");
         }
 
         public ActionResult Details(string id)
@@ -86,6 +95,26 @@ namespace Health4U_Admin_.Controllers
             {
                 var recordsSelected = SelectOneDisease(id);
                 ViewBag.id = id;
+                if (recordsSelected.Treatment != null)
+                {
+                    List<string> Treatment = JsonConvert.DeserializeObject<List<string>>(recordsSelected.Treatment);
+                    recordsSelected.Treatment = string.Join(", ", Treatment.ToArray());
+                }
+
+                if (recordsSelected.Causes != null)
+                {
+                    List<string> Causes = JsonConvert.DeserializeObject<List<string>>(recordsSelected.Causes);
+                    recordsSelected.Causes = string.Join(", ", Causes.ToArray());
+
+                }
+
+                if (recordsSelected.Symptoms != null)
+                {
+                    List<string> Symptoms = JsonConvert.DeserializeObject<List<string>>(recordsSelected.Symptoms);
+                    recordsSelected.Symptoms = string.Join(", ", Symptoms.ToArray());
+                }
+
+
 
                 if (recordsSelected.Image1 == null && recordsSelected.Image2 == null)
                 {
@@ -156,7 +185,7 @@ namespace Health4U_Admin_.Controllers
                     return View(model);
                 }
             }
-            return RedirectToAction("ViewDisease", "Disease");
+            return RedirectToAction("ViewDisease", "Diseases");
 
         }
 
@@ -165,14 +194,34 @@ namespace Health4U_Admin_.Controllers
             if (ModelState.IsValid)
             {
                 var recordsSelected = SelectOneDisease(id);
-                    var model = new Diseases()
+                if (recordsSelected.Treatment != null)
+                {
+                    List<string> Treatment = JsonConvert.DeserializeObject<List<string>>(recordsSelected.Treatment);
+                    recordsSelected.Treatment = string.Join(", ", Treatment.ToArray());
+                }
+
+                if (recordsSelected.Causes != null)
+                {
+                    List<string> Causes = JsonConvert.DeserializeObject<List<string>>(recordsSelected.Causes);
+                    recordsSelected.Causes = string.Join(", ", Causes.ToArray());
+
+                }
+
+                if (recordsSelected.Symptoms != null)
+                {
+                    List<string> Symptoms = JsonConvert.DeserializeObject<List<string>>(recordsSelected.Symptoms);
+                    recordsSelected.Symptoms = string.Join(", ", Symptoms.ToArray());
+                }
+
+
+                var model = new Diseases()
                     {
-                        DiseaseID = recordsSelected.DiseaseID,
-                        Description = recordsSelected.Description,
-                        Treatment = recordsSelected.Treatment,
-                        Causes = recordsSelected.Causes,
-                        Symptoms = recordsSelected.Symptoms,
-                    };
+                      DiseaseID = recordsSelected.DiseaseID,
+                      Description = recordsSelected.Description,
+                      Treatment = recordsSelected.Treatment,
+                      Causes = recordsSelected.Causes,
+                      Symptoms = recordsSelected.Symptoms,
+                };
                     return View(model);
                     
             }
@@ -186,33 +235,54 @@ namespace Health4U_Admin_.Controllers
 
             var recordsSelected = SelectOneDisease(model.DiseaseID);
 
+            if (model.Treatment != null)
+            {
+                IList<string> Treatment = model.Treatment.Split(',').Reverse().ToList<string>();
+                string json = JsonConvert.SerializeObject(Treatment);
+                recordsSelected.Treatment = json;
+
+            }
+
+            if (model.Causes != null)
+            {
+                IList<string> Causes = model.Causes.Split(',').Reverse().ToList<string>();
+                string json1 = JsonConvert.SerializeObject(Causes);
+                recordsSelected.Causes = json1;
+            }
+
+            if (model.Symptoms != null)
+            {
+                IList<string> Symptoms = model.Symptoms.Split(',').Reverse().ToList<string>();
+                string json2 = JsonConvert.SerializeObject(Symptoms);
+                recordsSelected.Symptoms = json2;
+            }
+
             MemoryStream ms = new MemoryStream();
             MemoryStream ms2 = new MemoryStream();
             if (model != null)
             {
-                if (file == null)
+                if (file == null && file2!=null)
                 {
                     file2.InputStream.CopyTo(ms2);
                     ms.Seek(0, SeekOrigin.Begin);
                     byte[] array2 = ms2.GetBuffer();
                     var recordsCreated = UpdateDiseases(model.DiseaseID, model.Description,
-                model.Treatment, model.Causes, model.Symptoms, recordsSelected.Image1, array2);
-                }else if(file2==null)
+                recordsSelected.Treatment, recordsSelected.Causes, recordsSelected.Symptoms, recordsSelected.Image1, array2);
+                }
+                else if (file != null && file2==null)
                 {
                     file.InputStream.CopyTo(ms);
                     ms.Seek(0, SeekOrigin.Begin);
                     byte[] array = ms.GetBuffer();
                     var recordsCreated = UpdateDiseases(model.DiseaseID, model.Description,
-                model.Treatment, model.Causes, model.Symptoms, array,recordsSelected.Image2 );
-                }else if(file==null&& file2== null)
+             recordsSelected.Treatment, recordsSelected.Causes, recordsSelected.Symptoms, array, recordsSelected.Image2);
+                }
+                else if (file == null && file2 == null)
                 {
-                    file.InputStream.CopyTo(ms);
-                    file2.InputStream.CopyTo(ms2);
-                    byte[] array = ms.GetBuffer();
-                    byte[] array2 = ms2.GetBuffer();
+              
 
                     var recordsCreated = UpdateDiseases(model.DiseaseID, model.Description,
-                model.Treatment, model.Causes, model.Symptoms, array, array2);
+            recordsSelected.Treatment, recordsSelected.Causes, recordsSelected.Symptoms, recordsSelected.Image1, recordsSelected.Image2);
                 }
                 else
                 {
@@ -222,7 +292,7 @@ namespace Health4U_Admin_.Controllers
                     byte[] array = ms.GetBuffer();
                     byte[] array2 = ms2.GetBuffer();
                     var recordsCreated = UpdateDiseases(model.DiseaseID, model.Description,
-                model.Treatment, model.Causes, model.Symptoms, array, array2);
+          recordsSelected.Treatment, recordsSelected.Causes, recordsSelected.Symptoms, array, array2);
                 }
                 return RedirectToAction("ViewDisease");
             }
@@ -237,6 +307,24 @@ namespace Health4U_Admin_.Controllers
 
             foreach (var row in data)
             {
+                if (row.Treatment != null)
+                {
+                    List<string> Treatment = JsonConvert.DeserializeObject<List<string>>(row.Treatment);
+                    row.Treatment = string.Join(", ", Treatment.ToArray());
+                }
+
+                if (row.Causes != null)
+                {
+                    List<string> Causes = JsonConvert.DeserializeObject<List<string>>(row.Causes);
+                    row.Causes = string.Join(", ", Causes.ToArray());
+
+                }
+
+                if (row.Symptoms != null)
+                {
+                    List<string> Symptoms = JsonConvert.DeserializeObject<List<string>>(row.Symptoms);
+                    row.Symptoms = string.Join(", ", Symptoms.ToArray());
+                }
                 Disease.Add(new Diseases
                 {
                     DiseaseID = row.DiseaseID,

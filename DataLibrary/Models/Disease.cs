@@ -10,6 +10,7 @@ namespace DataLibrary.Models
 {
     public class Diseases
     {
+       
 
         [Display(Name = "DiseaseID")]
         public string DiseaseID { get; set; }
