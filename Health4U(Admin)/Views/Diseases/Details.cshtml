@@ -5,43 +5,7 @@
 }
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("#btnAlert").click(function (e) {
-            var id = $(e.currentTarget).data("user-id");
-            var arr = id.split(",");
 
-            swal({
-                confirmButtonText: "Yes",
-                title: "Confirmation?",
-                text: "Are you sure want to delete " + arr[0] +"?",
-                type: 'warning',
-                showCancelButton: true,
-                cancelButtonText: "No",
-                confirmButtonClass: "btn-danger",
-                closeOnConfirm: false,
-                closeOnCancel: false
-            },
-                function (isConfirm) {
-                    if (isConfirm) {
-                        swal("Deleted", "Disease had been deleted", "success");
-                        var link = '@Url.Action("DeleteDisease", "Diseases",
-                                               routeValues: new { id = "_myid_" })';
-                        window.location.href= link.replace('_myid_', arr[0]);
-                         } else {
-                        swal("Cancelled", "Disease remained", "error");
-
-                            }
-                });
-
-            return false;
-
-        });
-    });
-
-</script>
 
 @using (Html.BeginForm("AddDisease", "Diseases", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
@@ -106,7 +70,6 @@
 
                                     <input type="button" class="btn btn-outline-dark" style="margin-left:400px" value="Edit"
                                            onclick="location.href='@Url.Action("UpdateDisease", "Diseases", routeValues: new { id = ViewBag.id })'" />
-                                    <input type="button" id="btnAlert" class="btn btn-danger" style="text-align:center;margin-left: 70px;" data-user-id="@(ViewBag.id)" value="Delete" />
 
                                 </div>
                             </div>

@@ -2116,7 +2116,6 @@
     <Content Include="Views\Rewards\AddRewards.cshtml" />
     <Content Include="Views\Rewards\RDetails.cshtml" />
     <Content Include="Views\Rewards\ViewClaimRecords.cshtml" />
-    <Content Include="Views\Rewards\CDetails.cshtml" />
     <Content Include="Views\Billing\Invoices.cshtml" />
     <Content Include="Views\Report\Print.cshtml" />
     <Content Include="Views\User\AddNewUser.cshtml" />

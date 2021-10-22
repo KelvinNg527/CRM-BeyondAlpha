@@ -6,41 +6,7 @@
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("#btnAlert").click(function (e) {
-            var id = $(e.currentTarget).data("user-id");
-            var arr = id.split(",");
 
-            swal({
-                confirmButtonText: "Yes",
-                title: "Confirmation?",
-                text: "Are you sure want to delete " + arr[0] +"?",
-                type: 'warning',
-                showCancelButton: true,
-                cancelButtonText: "No",
-                confirmButtonClass: "btn-danger",
-                closeOnConfirm: false,
-                closeOnCancel: false
-            },
-                function (isConfirm) {
-                    if (isConfirm) {
-                        swal("Deleted", "Rewards had been deleted", "success");
-                        var link = '@Url.Action("DeleteReward", "Rewards",
-                                               routeValues: new { id = "_myid_" })';
-                        window.location.href= link.replace('_myid_', arr[0]);
-                         } else {
-                        swal("Cancelled", "Rewards remained", "error");
-
-                            }
-                });
-
-            return false;
-
-        });
-    });
-
-</script>
 @using (Html.BeginForm("RDetails", "Rewards", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
@@ -101,11 +67,17 @@
                                         @Html.EditorFor(model => model.MaxClaim, new { htmlAttributes = new { @class = "form-control" } })
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" style="margin-top: 12px;">PhysicalLocation</label>
+                                    <div class="col-sm-10">
+                                        @Html.EditorFor(model => model.PhysicalLocation, new { htmlAttributes = new { @class = "form-control" } })
+                                    </div>
+                                </div>
+                                <br />
                             </form>
                             <div class="form-group">
                                 <div class="col-lg-offset-2 col-lg-10">
                                     <button class="btn btn-dark" style="text-align:center;margin-left: 400px;" type="submit">Edit</button>
-                                    <input type="button" id="btnAlert" class="btn btn-danger" style="text-align:center;margin-left: 70px;" data-user-id="@(Model.RewardID)" value="Delete" />
                                 </div>
                             </div>
                         </div>

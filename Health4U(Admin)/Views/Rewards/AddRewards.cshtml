@@ -1,57 +1,142 @@
-﻿
+﻿@model DataLibrary.Models.Rewards
+
 @{
     ViewBag.Title = "Details";
 }
-<div id="layoutSidenav">
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+<script type="text/javascript">
 
-    <div id="layoutSidenav_content">
-        <main>
-            <div class="container-fluid px-4">
-                <section class="panel">
-                    <header class="panel-heading" style="font-size:250%">
-                        Add Rewards
-                    </header>
-                    <div class="panel-body">
-                        <form class="form-horizontal " method="get">
-                        
+    function validateData() {
+        if ($("#Description").val() == "") {
+            swal("Rewards desciption  cannot be null!");
+            return false;
+        } else if ($("#BloodType").val() == "") {
+            swal("Blood Type cannot be null!");
+            return false;
+        } else {
+            return true;
+        }
+
+    }
+
+    function Validate(ctl, event) {
+        event.preventDefault();
+        swal({
+            title: "Do you want to add a Rewards?",
+            text: "Please check information before adding !",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#008000",
+            confirmButtonText: "Add",
+            cancelButtonText: "Cancel",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        },
+            function (isConfirm) {
+                if (isConfirm) {
+                    if (validateData() == true) {
+                        $("#CreateForm").submit();
+                    }
+                } else {
+                    swal("Cancelled", "You have Cancelled an adding action!", "error");
+                }
+            });
+    }
+</script>
+@using (Html.BeginForm("AddRewards", "Rewards", FormMethod.Post, new { enctype = "multipart/form-data", id = "CreateForm" }))
+{
+    @Html.AntiForgeryToken()
+    <div id="layoutSidenav">
+
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+                    <section class="panel">
+                        <header class="panel-heading" style="font-size:250%">
+                            Add Rewards
+                        </header>
+                        <div class="panel-body">
                             <div class="form-group">
-                                <label class="col-sm-2 control-label" style="margin-top: 12px;">User ID</label>
-                                <div class="col-sm-10">
-                                    <input class="form-control" id="focusedInput" type="text" value="">
+                                <a style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;font-size:15px">
+                                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-lg-2", @style = "margin-top:26px" })
+                                </a>
+                                <div class="col-lg-10">
+                                    @Html.TextBoxFor(m => m.Description, new { @style = "width:522px" })
                                 </div>
                             </div>
-                     
+
                             <div class="form-group">
-                                <label class="col-sm-2 control-label" style="margin-top: 12px;">Completion Time</label>
-                                <div class="col-sm-10">
-                                    <input type="datetime-local" id="birthdaytime" name="birthdaytime">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label" style="margin-top: 12px;">Rewards ID</label>
-                                <div class="col-sm-10">
-                                    <input class="form-control" id="focusedInput" type="text" value="">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label" style="margin-top: 12px;">Shipping Address</label>
-                                <div class="col-sm-10">
-                                    <input class="form-control" id="focusedInput" type="text" value="">
+                                <a style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;font-size:15px">
+                                    @Html.LabelFor(model => model.IsGovernment, htmlAttributes: new { @class = "control-label col-lg-2", @style = "margin-top:26px" })
+                                </a>
+                                <div class="col-lg-10">
+                                    @Html.RadioButtonFor(model => model.IsGovernment, true)True
+                                    <br />
+                                    <br />
+                                    @Html.RadioButtonFor(model => model.IsGovernment, false)False
                                 </div>
                             </div>
 
+                            <div class="form-group">
+                                <a style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;font-size:15px">
+                                    @Html.LabelFor(model => model.Note, htmlAttributes: new { @class = "control-label col-lg-2", @style = "margin-top:26px" })
+                                </a>
+                                <div class="col-lg-10">
+                                    @Html.TextBoxFor(m => m.Note, new { @style = "width:522px" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <a style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;font-size:15px">
+                                    @Html.LabelFor(model => model.BloodType, htmlAttributes: new { @class = "control-label col-lg-2", @style = "margin-top:26px" })
+                                </a>
+                                <div class="col-lg-10">
+                                    @Html.DropDownListFor(model => model.BloodTypeID, (SelectList)ViewBag.BloodType, new { style = "height: 33px;" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <a style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;font-size:15px">
+                                    @Html.LabelFor(model => model.MinRequirement, htmlAttributes: new { @class = "control-label col-lg-2", @style = "margin-top:26px" })
+                                </a>
+                                <div class="col-lg-10">
+                                    @Html.TextBoxFor(m => m.MinRequirement, new { @style = "width:522px" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <a style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;font-size:15px">
+                                    @Html.LabelFor(model => model.PhysicalLocation, htmlAttributes: new { @class = "control-label col-lg-2", @style = "margin-top:26px" })
+                                </a>
+                                <div class="col-lg-10">
+                                    @Html.TextBoxFor(m => m.PhysicalLocation, new { @style = "width:522px" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <a style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;font-size:15px">
+                                    @Html.LabelFor(model => model.MaxClaim, htmlAttributes: new { @class = "control-label col-lg-2", @style = "margin-top:26px" })
+                                </a>
+                                <div class="col-lg-10">
+                                    @Html.TextBoxFor(m => m.MaxClaim, new { @style = "width:522px" })
+                                </div>
+                            </div>
 
-
-                        </form>
-                        <div class="form-group">
-                            <div class="col-lg-offset-2 col-lg-10">
-                               
-                                <button class="btn-success" style="text-align:center;margin-left: 70px;" type="button">Add</button>
+                            <br />
+                            <div class="form-group">
+                                <div class="col-lg-offset-2 col-lg-10">
+                                    <button class="btn btn-primary" id="CreateForm" type="submit"
+                                            onclick="Validate(this, event);"
+                                            style="text-align:center;margin-left:310px;margin-top:30px">
+                                        Confirm
+                                    </button>
+                                    <button class="btn btn-danger" style="text-align:center;margin-left: 50px;margin-top:30px" type="reset">Reset</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </section>
-            </div>
-        </main>
+
+                          
+                        </div>
+                
+            </main>
+        </div>
     </div>
-</div>
+}

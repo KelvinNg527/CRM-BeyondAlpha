@@ -337,19 +337,7 @@ namespace Health4U_Admin_.Controllers
             return View(Disease);
         }
 
-        [ValidateInput(false)]
-        public ActionResult DeleteDisease(string id)
-        {
-
-            if (ModelState.IsValid)
-            {
-
-                var recordsDelete = DeleteDiseases(id);
-
-                return RedirectToAction("ViewDisease");
-            }
-            return RedirectToAction("ViewDisease");
-        }
+     
 
 
     }

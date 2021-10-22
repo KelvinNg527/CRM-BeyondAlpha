@@ -136,6 +136,7 @@
 
 
     </SCRIPT>
+
     @using (Html.BeginForm("AddDisease", "Diseases", FormMethod.Post, new { enctype = "multipart/form-data" , id = "CreateForm"}))
     {
     @Html.AntiForgeryToken()

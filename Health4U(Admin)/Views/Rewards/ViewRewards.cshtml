@@ -36,7 +36,6 @@
                                     <th>Description</th>
                                     <th>Note</th>
                                     <th>Blood Type</th>
-                                    <th>Physical Location</th>
                                     <th>Is Active</th>
                                     <th>Action</th>
                                 </tr>
@@ -57,14 +56,20 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Note)
                                     </td>
+                                 
                                     <td>
                                         @Html.DisplayFor(modelItem => item.BloodTypeCb)
                                     </td>
+
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.PhysicalLocation)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.IsActive)
+                                        @if (item.IsActive == true)
+                                        {
+                                            @Html.Encode("True")
+                                        }
+                                        @if (item.IsActive == false)
+                                        {
+                                            @Html.Encode("False")
+                                        }
                                     </td>
                                     <td>
                                         <div class="btn-group">

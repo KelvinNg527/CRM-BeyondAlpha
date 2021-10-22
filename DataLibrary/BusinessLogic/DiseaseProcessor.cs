@@ -36,6 +36,8 @@ namespace DataLibrary.BusinessLogic
             return SqlDataAccess.SaveData(sql, args);
         }
 
+        
+
         public static List<Diseases> LoadDisease()
         {
             string sql = @"SELECT * from disease;";
@@ -75,10 +77,10 @@ namespace DataLibrary.BusinessLogic
             return SqlDataAccess.SaveData(sql, args);
         }
 
-        public static int DeleteDiseases(string DiseaseID)
-        {
-            string sql = @"delete from  disease where DiseaseID= @DiseaseID;";
-            return SqlDataAccess.DeleteDData(sql, DiseaseID);
-        }
+        //public static int DeleteDiseases(string DiseaseID)
+        //{
+        //    string sql = @"delete from  disease where DiseaseID= @DiseaseID;";
+        //    return SqlDataAccess.DeleteDData(sql, DiseaseID);
+        //}
     }
 }
