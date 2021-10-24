@@ -172,6 +172,26 @@ namespace DataLibrary.DataAccees
         //    }
         //}
 
+        public static T SelectAData<T>(string sql, T data)
+        {
+            using (var cnn = new MySqlConnection(GetConnectionString()))
+            {
+                var model = data as Models.LoginModel;
+
+                if (data is Models.LoginModel)
+                {
+                    if (model.ID != null)
+                    {
+                        return (T)Convert.ChangeType(cnn.QueryFirstOrDefault<T>(sql,
+                        new { ID = model.ID, Password = model.Password }), typeof(T));
+                    }
+                    
+                }
+
+                return default(T); //Default
+            }
+        }
+
     }
 }
 
