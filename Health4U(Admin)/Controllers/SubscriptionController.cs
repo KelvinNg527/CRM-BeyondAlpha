@@ -14,6 +14,8 @@ namespace Health4U_Admin_.Controllers
         // GET: Subscription
         public ActionResult Subscription()
         {
+            var user = Session["user"];
+
             var recordsPackage = LoadPackage().ToList();
             var recordsCorporate = LoadCorporate().ToList();
             SelectList packagelist = new SelectList(recordsPackage, "PackageID", "Package");
@@ -32,6 +34,9 @@ namespace Health4U_Admin_.Controllers
             {
                 List<Billings> Bill = new List<Billings>();
                 Billings app = new Billings();
+                var user = Session["user"] as LoginModel;
+                if (user == null) { return RedirectToAction("login", "Home"); }
+
 
                 var data = LoadBillings();
                 var lastBillID = data.AsQueryable().OrderByDescending(c => c.BillID).FirstOrDefault();
@@ -52,7 +57,7 @@ namespace Health4U_Admin_.Controllers
                 int recordsCreated = CreateBill(app.BillID,
                    model.BillDate,
                    model.PackageID, model.CorporateID,
-                    model.SubscribeMonth);
+                    model.SubscribeMonth,user.ID);
 
                 int recordsUpdate = UpdateExpired(modifiedDatetime,model.PackageID, model.CorporateID);
                 return RedirectToAction("Subscription");

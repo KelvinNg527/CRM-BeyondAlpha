@@ -25,7 +25,10 @@ namespace Health4U_Admin_.Controllers
                     var adminDetails = AdminLogin(model.ID, model.Password);
                     if (adminDetails != null)
                     {
-                        Session["user"] = new LoginModel(adminDetails.ID, adminDetails.Password, adminDetails.Name, adminDetails.Position);
+                        Session["position"] = adminDetails.Position;
+
+                        Session["user"] = new LoginModel(adminDetails.ID, adminDetails.Password,
+                            adminDetails.Name, adminDetails.Position);
                         return RedirectToAction("index", "Home");
                     }
                 }

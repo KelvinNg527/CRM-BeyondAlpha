@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@model DataLibrary.Models.LoginModel
+
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -34,10 +37,11 @@
                         </a>
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="http://localhost:49992/Rewards/Rewards">ViewRewards</a>
-                                <a class="nav-link" href="http://localhost:49992/Rewards/AddRewards">Add Rewards</a>
-                                <a class="nav-link" href="http://localhost:49992/Rewards/PendingBooking">Pending Rewards Booking</a>
-                                <a class="nav-link" href="http://localhost:49992/Rewards/AddBooking">Add booking</a>
+                                @Html.ActionLink("View Rewards", "Rewards", "Rewards", null, new { @class = "nav-link" })
+                                @Html.ActionLink("Add Rewards", "AddRewards", "Rewards", null, new { @class = "nav-link" })
+                                @Html.ActionLink("Pending Booking", "PendingBooking", "Rewards", null, new { @class = "nav-link" })
+                                @Html.ActionLink("Add Booking", "AddBooking", "Rewards", null, new { @class = "nav-link" })
+
 
                             </nav>
                         </div>
@@ -51,10 +55,12 @@
                         </a>
                         <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested">
-                                <a class="nav-link collapsed" href="http://localhost:49992/Diseases/ViewDisease">View Disease</a>
+                                @Html.ActionLink("View Disease", "ViewDisease", "Diseases", null, new { @class = "nav-link" })
+
                             </nav>
                             <nav class="sb-sidenav-menu-nested">
-                                <a class="nav-link collapsed" href="http://localhost:49992/Diseases/AddDisease">Add Disease</a>
+                                @Html.ActionLink("Add Disease", "AddDisease", "Diseases", null, new { @class = "nav-link" })
+
                             </nav>
                         </div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages2"
@@ -65,13 +71,24 @@
                         </a>
                         <div class="collapse" id="collapsePages2" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested">
-                                <a class="nav-link collapsed" href="http://localhost:49992/Billing/ViewBilling">View Billings</a>
+                                @Html.ActionLink("View Billing", "ViewBilling", "Billing", null, new { @class = "nav-link" })
                             </nav>
-                            <nav class="sb-sidenav-menu-nested">
-                                <a class="nav-link collapsed" href="http://localhost:49992/Subscription/Subscription">Add Billing</a>
-                            </nav>
+
+                            @if (HttpContext.Current.Session["position"] != null)
+                            {
+                                <nav class="sb-sidenav-menu-nested">
+                                    @Html.ActionLink("Add Billings", "Subscription", "Subscription", null, new { @class = "nav-link" })
+                                </nav>
+                            }
+
+                            else
+                            {
+                                <nav class="sb-sidenav-menu-nested">
+                                    @Html.ActionLink("Add Billing", "Subscription", "Subscription", null, new { @style = "display:none" })
+                                </nav>
+                            }
                         </div>
-                    
+
 
                         <a class="nav-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapsePages1" aria-expanded="false" aria-controls="collapsePages1">
                             <div class="sb-nav-link-icon"><i class="fas fa-money-check"></i></div>

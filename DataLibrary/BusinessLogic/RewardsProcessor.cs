@@ -41,12 +41,7 @@ namespace DataLibrary.BusinessLogic
             return SqlDataAccess.SelectRData<Rewards>(sql, new Rewards() { RewardID = RewardID });
         }
 
-        public static List<Rewards> LoadIsActive()
-        {
-
-            string sql = @"SELECT Distinct(IsActive) FROM rewards;";
-            return SqlDataAccess.LoadData<Rewards>(sql);
-        }
+ 
 
         public static int UpdateRewards(string RewardID, bool IsActive,
           string Description, string Note, int BloodTypeID,

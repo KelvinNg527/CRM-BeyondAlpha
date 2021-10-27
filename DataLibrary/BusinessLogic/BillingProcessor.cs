@@ -103,7 +103,7 @@ namespace DataLibrary.BusinessLogic
         }
 
         public static int CreateBill(string BillID, DateTime BillDate, int PackageID
-            ,string CorporateID,int SubscribeMonth)
+            ,string CorporateID,int SubscribeMonth,string AdminID)
         {
             Billings data = new Billings
             {
@@ -111,11 +111,12 @@ namespace DataLibrary.BusinessLogic
                 BillDate = BillDate,
                 PackageID = PackageID,
                 CorporateID=CorporateID,
-                SubscribeMonth=SubscribeMonth
+                SubscribeMonth=SubscribeMonth,
+                AdminID=AdminID
             };
 
-            string sql = @"insert into admin_billing(BillID,BillDate,PackageID,CorporateID,SubscribeMonth)
-            values(@BillID,@BillDate,@PackageID,@CorporateID,@SubscribeMonth);";
+            string sql = @"insert into admin_billing(BillID,BillDate,PackageID,CorporateID,SubscribeMonth,AdminID)
+            values(@BillID,@BillDate,@PackageID,@CorporateID,@SubscribeMonth,@AdminID);";
             return SqlDataAccess.SaveData(sql, data);
         }
 

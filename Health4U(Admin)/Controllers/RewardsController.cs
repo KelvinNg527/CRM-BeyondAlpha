@@ -108,11 +108,9 @@ namespace Health4U_Admin_.Controllers
 
                 var recordsSelected = SelectRewards(id);
                 var recordsBloodType = LoadBloodType().ToList();
-                var recordsIDSelected = LoadIsActive();
                 SelectList BloodType = new SelectList(recordsBloodType, "BloodTypeID", "BloodTypeCb");
                 ViewBag.BloodType = BloodType;
-                SelectList isActive = new SelectList(recordsIDSelected, "IsActive", "IsActive");
-                ViewBag.isActive = isActive;
+ 
 
                 var model = new Rewards()
                 {
