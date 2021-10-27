@@ -1,123 +1,127 @@
 ﻿@model DataLibrary.Models.LoginModel
 
+@{
+    var role = HttpContext.Current.Session["position"] as string;
+ }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>Dashboard - SB Admin</title>
-    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-    <link href="css/styles.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
-</head>
-<body class="sb-nav-fixed">
-    <div id="layoutSidenav">
-        <div id="layoutSidenav_nav">
-            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                <div class="sb-sidenav-menu">
-                    <div class="nav">
-                        <div class="sb-sidenav-menu-heading">Home</div>
-                        <a class="nav-link" href="index.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Dashboard
-                        </a>
-                        <div class="sb-sidenav-menu-heading">Modules</div>
-
-
-                        <a class="nav-link collapsed" data-bs-toggle="collapse"
-                           data-bs-target="#collapseLayouts" aria-expanded="false"
-                           aria-controls="collapseLayouts">
-                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                            Rewards
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                        </a>
-                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav">
-                                @Html.ActionLink("View Rewards", "Rewards", "Rewards", null, new { @class = "nav-link" })
-                                @Html.ActionLink("Add Rewards", "AddRewards", "Rewards", null, new { @class = "nav-link" })
-                                @Html.ActionLink("Pending Booking", "PendingBooking", "Rewards", null, new { @class = "nav-link" })
-                                @Html.ActionLink("Add Booking", "AddBooking", "Rewards", null, new { @class = "nav-link" })
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Dashboard - SB Admin</title>
+        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+        <link href="css/styles.css" rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+    </head>
+    <body class="sb-nav-fixed">
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                    <div class="sb-sidenav-menu">
+                        <div class="nav">
+                            <div class="sb-sidenav-menu-heading">Home</div>
+                            <a class="nav-link" href="index.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Dashboard
+                            </a>
+                            <div class="sb-sidenav-menu-heading">Modules</div>
 
 
-                            </nav>
-                        </div>
+                            <a class="nav-link collapsed" data-bs-toggle="collapse"
+                               data-bs-target="#collapseLayouts" aria-expanded="false"
+                               aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                Rewards
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    @Html.ActionLink("View Rewards", "Rewards", "Rewards", null, new { @class = "nav-link" })
+                                    @Html.ActionLink("Add Rewards", "AddRewards", "Rewards", null, new { @class = "nav-link" })
+                                    @Html.ActionLink("Pending Booking", "PendingBooking", "Rewards", null, new { @class = "nav-link" })
+                                    @Html.ActionLink("Add Booking", "AddBooking", "Rewards", null, new { @class = "nav-link" })
 
 
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
-                           aria-expanded="false" aria-controls="collapsePages">
-                            <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                            Disease
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                        </a>
-                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested">
-                                @Html.ActionLink("View Disease", "ViewDisease", "Diseases", null, new { @class = "nav-link" })
-
-                            </nav>
-                            <nav class="sb-sidenav-menu-nested">
-                                @Html.ActionLink("Add Disease", "AddDisease", "Diseases", null, new { @class = "nav-link" })
-
-                            </nav>
-                        </div>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages2"
-                           aria-expanded="false" aria-controls="collapsePages2">
-                            <div class="sb-nav-link-icon"><i class="fas fa-money-bill"></i></div>
-                            Sales Billing
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                        </a>
-                        <div class="collapse" id="collapsePages2" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested">
-                                @Html.ActionLink("View Billing", "ViewBilling", "Billing", null, new { @class = "nav-link" })
-                            </nav>
-
-                            @if (HttpContext.Current.Session["position"] != null)
-                            {
-                                <nav class="sb-sidenav-menu-nested">
-                                    @Html.ActionLink("Add Billings", "Subscription", "Subscription", null, new { @class = "nav-link" })
                                 </nav>
-                            }
+                            </div>
 
-                            else
-                            {
+
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
+                               aria-expanded="false" aria-controls="collapsePages">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                Disease
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested">
-                                    @Html.ActionLink("Add Billing", "Subscription", "Subscription", null, new { @style = "display:none" })
+                                    @Html.ActionLink("View Disease", "ViewDisease", "Diseases", null, new { @class = "nav-link" })
+
                                 </nav>
-                            }
+                                <nav class="sb-sidenav-menu-nested">
+                                    @Html.ActionLink("Add Disease", "AddDisease", "Diseases", null, new { @class = "nav-link" })
+
+                                </nav>
+                            </div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages2"
+                               aria-expanded="false" aria-controls="collapsePages2">
+                                <div class="sb-nav-link-icon"><i class="fas fa-money-bill"></i></div>
+                                Sales Billing
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapsePages2" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested">
+                                    @Html.ActionLink("View Billing", "ViewBilling", "Billing", null, new { @class = "nav-link" })
+                                </nav>
+
+                           
+
+                                @if (role=="Senior Admin")
+                                {
+                                    <nav class="sb-sidenav-menu-nested">
+                                        @Html.ActionLink("Add Billings", "Subscription", "Subscription", null, new { @class = "nav-link" })
+                                    </nav>
+                                }
+                                else
+                                {
+                                    <nav class="sb-sidenav-menu-nested">
+                                        @Html.ActionLink("Add Billing", "Subscription", "Subscription", null, new { @style = "display:none" })
+                                    </nav>
+                                }
+                            </div>
+
+
+                            <a class="nav-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapsePages1" aria-expanded="false" aria-controls="collapsePages1">
+                                <div class="sb-nav-link-icon"><i class="fas fa-money-check"></i></div>
+                                User
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapsePages1" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    @Html.ActionLink("View User", "ViewUser", "User", null, new { @class = "nav-link" })
+                                    @Html.ActionLink("Add New User", "AddNewUser", "User", null, new { @class = "nav-link" })
+                                </nav>
+                            </div>
+                            <a class="nav-link" href="http://localhost:49992/Blacklist/Blacklist">
+                                <div class="sb-nav-link-icon"><i class="fas fa-window-close"></i></div>
+                                Blacklist
+                            </a>
+
+
+
                         </div>
-
-
-                        <a class="nav-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapsePages1" aria-expanded="false" aria-controls="collapsePages1">
-                            <div class="sb-nav-link-icon"><i class="fas fa-money-check"></i></div>
-                            User
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                        </a>
-                        <div class="collapse" id="collapsePages1" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav">
-                                @Html.ActionLink("View User", "ViewUser", "User", null, new { @class = "nav-link" })
-                                @Html.ActionLink("Add New User", "AddNewUser", "User", null, new { @class = "nav-link" })
-                            </nav>
-                        </div>
-                        <a class="nav-link" href="http://localhost:49992/Blacklist/Blacklist">
-                            <div class="sb-nav-link-icon"><i class="fas fa-window-close"></i></div>
-                            Blacklist
-                        </a>
-
-
-
                     </div>
-                </div>
-                <div class="sb-sidenav-footer">
-                    <div class="small">Logged in as:</div>
-                    Senior Admin
-                </div>
-            </nav>
+                    <div class="sb-sidenav-footer">
+                        <div class="small">Logged in as:</div>
+                        <span>@role</span>
+                    </div>
+                </nav>
+            </div>
         </div>
-    </div>
-</body>
+    </body>
 </html>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <script src="~/Assets/js/scripts.js"></script>
