@@ -138,6 +138,22 @@ namespace DataLibrary.DataAccees
             }
         }
 
+        public static T SelectCData<T>(string sql, T data)
+        {
+            using (var cnn = new MySqlConnection(GetConnectionString()))
+            {
+
+                if (data is Models.Corporate)
+                {
+                    var model = data as Corporate;
+                    return (T)Convert.ChangeType(cnn.QueryFirst<T>(sql,
+                        new { CorporateID = model.CorporateID }), typeof(T));
+                }
+
+                return default(T);
+            }
+        }
+
         public static T SelectdData<T>(string sql, T data)
         {
             using (var cnn = new MySqlConnection(GetConnectionString()))

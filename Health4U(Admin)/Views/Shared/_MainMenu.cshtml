@@ -1,5 +1,4 @@
-﻿@model DataLibrary.Models.LoginModel
-
+﻿
 @{
     var role = HttpContext.Current.Session["position"] as string;
  }
@@ -77,9 +76,7 @@
                                     @Html.ActionLink("View Billing", "ViewBilling", "Billing", null, new { @class = "nav-link" })
                                 </nav>
 
-                           
-
-                                @if (role=="Senior Admin")
+                                @if (role == "Senior Admin")
                                 {
                                     <nav class="sb-sidenav-menu-nested">
                                         @Html.ActionLink("Add Billings", "Subscription", "Subscription", null, new { @class = "nav-link" })
@@ -94,7 +91,8 @@
                             </div>
 
 
-                            <a class="nav-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapsePages1" aria-expanded="false" aria-controls="collapsePages1">
+                            <a class="nav-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapsePages1" 
+                               aria-expanded="false" aria-controls="collapsePages1">
                                 <div class="sb-nav-link-icon"><i class="fas fa-money-check"></i></div>
                                 User
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
@@ -103,6 +101,19 @@
                                 <nav class="sb-sidenav-menu-nested nav">
                                     @Html.ActionLink("View User", "ViewUser", "User", null, new { @class = "nav-link" })
                                     @Html.ActionLink("Add New User", "AddNewUser", "User", null, new { @class = "nav-link" })
+                                </nav>
+                            </div>
+                            <a class="nav-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapsePages3" 
+                               aria-expanded="false" 
+                               aria-controls="collapsePages">
+                                <div class="sb-nav-link-icon"><i class="fas fa-money-check"></i></div>
+                                Corporate
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapsePages3" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    @Html.ActionLink("View Corporate", "ViewCorporate", "Corporate", null, new { @class = "nav-link" })
+                                    @Html.ActionLink("Add Corporate", "AddCorporate", "Corporate", null, new { @class = "nav-link" })
                                 </nav>
                             </div>
                             <a class="nav-link" href="http://localhost:49992/Blacklist/Blacklist">
