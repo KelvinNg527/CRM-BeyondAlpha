@@ -34,7 +34,7 @@ namespace DataLibrary.Models
         [Display(Name = "isHospital")]
         public bool isHospital { get; set; }
 
-        [Display(Name = "Image1")]
+        [Display(Name = "Image")]
         public byte[] image { get; set; }
 
         [Display(Name = "isActive")]

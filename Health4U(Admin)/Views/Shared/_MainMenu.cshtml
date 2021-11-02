@@ -39,7 +39,7 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    @Html.ActionLink("View Rewards", "Rewards", "Rewards", null, new { @class = "nav-link" })
+                                    @Html.ActionLink("View Rewards", "ViewRewards", "Rewards", null, new { @class = "nav-link" })
                                     @Html.ActionLink("Add Rewards", "AddRewards", "Rewards", null, new { @class = "nav-link" })
                                     @Html.ActionLink("Pending Booking", "PendingBooking", "Rewards", null, new { @class = "nav-link" })
                                     @Html.ActionLink("Add Booking", "AddBooking", "Rewards", null, new { @class = "nav-link" })
@@ -91,7 +91,7 @@
                             </div>
 
 
-                            <a class="nav-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapsePages1" 
+                            <a class="nav-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapsePages1"
                                aria-expanded="false" aria-controls="collapsePages1">
                                 <div class="sb-nav-link-icon"><i class="fas fa-money-check"></i></div>
                                 User
@@ -103,8 +103,8 @@
                                     @Html.ActionLink("Add New User", "AddNewUser", "User", null, new { @class = "nav-link" })
                                 </nav>
                             </div>
-                            <a class="nav-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapsePages3" 
-                               aria-expanded="false" 
+                            <a class="nav-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapsePages3"
+                               aria-expanded="false"
                                aria-controls="collapsePages">
                                 <div class="sb-nav-link-icon"><i class="fas fa-money-check"></i></div>
                                 Corporate
@@ -116,10 +116,23 @@
                                     @Html.ActionLink("Add Corporate", "AddCorporate", "Corporate", null, new { @class = "nav-link" })
                                 </nav>
                             </div>
-                            <a class="nav-link" href="http://localhost:49992/Blacklist/Blacklist">
-                                <div class="sb-nav-link-icon"><i class="fas fa-window-close"></i></div>
+                            <a class="nav-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapsePages4"
+                               aria-expanded="false"
+                               aria-controls="collapsePages">
+                                <div class="sb-nav-link-icon"><i class="fas fa-money-check"></i></div>
                                 Blacklist
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
+                            <div class="collapse" id="collapsePages4" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    @Html.ActionLink("View Blacklist", "ViewBlacklist", "Blacklist", null, new { @class = "nav-link" })
+                                    @Html.ActionLink("Add Blacklist", "AddBlacklist", "Blacklist", null, new { @class = "nav-link" })
+
+                                </nav>
+                            </div>
+                    
+
+
 
 
 
@@ -136,9 +149,7 @@
 </html>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <script src="~/Assets/js/scripts.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-<script src="~/Assets/demo/chart-area-demo.js"></script>
-<script src="~/Assets/demo/chart-bar-demo.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
 <script src="~/Assets/js/datatables-simple-demo.js"></script>
 <script src="~/Scripts/10.js"></script>

@@ -1,46 +1,105 @@
-﻿
+﻿@model DataLibrary.Models.Blacklist
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "AddBlacklist";
 }
-<div id="layoutSidenav">
+<title>@ViewBag.Title</title>
 
-    <div id="layoutSidenav_content">
-        <main>
-            <div class="container-fluid px-4">
-                <section class="panel">
-                    <header class="panel-heading" style="font-size:250%">
-                        Add Blacklist
-                    </header>
-                    <div class="panel-body">
-                        <form class="form-horizontal " method="get">
-                        
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-LXYtQikeOSJJa_XM1D8GbiVBCmyVlJc&libraries=places"></script>
+
+
+<script type="text/javascript">
+
+    function validateData() {
+        if ($("#userID").val() == "") {
+            swal("userID  cannot be null!");
+            return false;
+        } else if ($("#reason").val() == "") {
+            swal("TelephoneNo cannot be null!");
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    function Validate(ctl, event) {
+        event.preventDefault();
+        swal({
+            title: "Do you want to blaklist a userID?",
+            text: "Please check information before adding !",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#008000",
+            confirmButtonText: "Add",
+            cancelButtonText: "Cancel",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        },
+            function (isConfirm) {
+                if (isConfirm) {
+                    if (validateData() == true) {
+                        $("#CreateForm").submit();
+                    }
+                } else {
+                    swal("Cancelled", "You have Cancelled an adding action!", "error");
+                }
+            });
+    }
+</script>
+
+@using (Html.BeginForm("AddBlacklist", "Blacklist", FormMethod.Post, new { enctype = "multipart/form-data", id = "CreateForm" }))
+{
+    @Html.AntiForgeryToken()
+    <div id="layoutSidenav">
+
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+                    <section class="panel">
+                        <header class="panel-heading" style="font-size:250%">
+                             Blacklist UserID
+                        </header>
+                        <div class="panel-body">
                             <div class="form-group">
-                                <label class="col-sm-2 control-label" style="margin-top: 12px;">UUID</label>
-                                <div class="col-sm-2">
-                                    <input class="form-control" id="focusedInput" type="text" value="">
+                                <a style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;font-size:15px">
+                                    @Html.LabelFor(model => model.userID, htmlAttributes: new { @class = "control-label col-lg-2", @style = "margin-top:26px" })
+                                </a>
+                                <div class="col-lg-10">
+                                    @Html.TextBoxFor(m => m.userID, new { @style = "width:522px" })
                                 </div>
                             </div>
+                      
                             <div class="form-group">
-                                <label class="col-sm-2 control-label" style="margin-top: 12px;">Reason</label>
-                                <div class="col-sm-10">
-                                    <input class="form-control" id="focusedInput" type="text" value="">
+                                <a style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;font-size:15px">
+                                    @Html.LabelFor(model => model.reason, htmlAttributes: new { @class = "control-label col-lg-2", @style = "margin-top:26px" })
+                                </a>
+                                <div class="col-lg-10">
+                                    @Html.TextBoxFor(m => m.reason, new { @style = "width:522px" })
                                 </div>
                             </div>
 
 
-
-                        </form>
+                        </div>
+                        <br />
                         <div class="form-group">
                             <div class="col-lg-offset-2 col-lg-10">
                                 <br />
-    
-                                <br />
-                                <button class="btn-success" style="text-align:center;margin-left: 70px;" type="button">Add</button>
+                                <button class="btn btn-primary" id="CreateForm" type="submit"
+                                        onclick="Validate(this, event);"
+                                        style="text-align:center;margin-left:310px;margin-top:30px">
+                                    Add
+                                </button>
+                                <button class="btn btn-danger" style="text-align:center;margin-left: 50px;margin-top:30px" type="reset">Reset</button>
                             </div>
                         </div>
-                    </div>
-                </section>
-            </div>
-        </main>
+                    </section>
+
+                </div>
+
+            </main>
+        </div>
     </div>
-</div>
+}
+

@@ -97,6 +97,7 @@
     <Compile Include="BusinessLogic\RewardsProcessor.cs" />
     <Compile Include="DataAccess\SqlDataAccess.cs" />
     <Compile Include="Models\Billings.cs" />
+    <Compile Include="Models\Blacklist.cs" />
     <Compile Include="Models\claim_rewards_records.cs" />
     <Compile Include="Models\Corporate.cs" />
     <Compile Include="Models\Disease.cs" />
