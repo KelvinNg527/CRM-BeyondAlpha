@@ -208,6 +208,24 @@ namespace DataLibrary.DataAccees
             }
         }
 
+        //Activiy Details SelectEventInfor
+        public static T SelectEventInfor<T>(string sql, T data)
+        {
+            using (var cnn = new MySqlConnection(GetConnectionString()))
+            {
+                if (data is Models.ActivityModel)
+                {
+                    var model = data as Models.ActivityModel;
+                    return (T)Convert.ChangeType(cnn.QueryFirstOrDefault<T>(sql,
+                       new { EventID = model.EventID }), typeof(T));
+                }
+
+                return default(T); //Default
+                //}
+
+                //return new AppointmentModel();
+            }
+        }
     }
 }
 
