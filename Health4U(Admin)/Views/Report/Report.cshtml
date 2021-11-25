@@ -1,74 +1,53 @@
-﻿@{
-    ViewBag.Title = "ViewBillings";
-}
+﻿
 
-<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-<link href="~/Assets/css/styles.css" rel="stylesheet" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+<section class="content-header"></section>
+<!-- Main content -->
 
+<section class="content container-fluid">
+    <!--------------------------
+    | Your Page Content Here |
+    -------------------------->
+    <div id="layoutSidenav">
 
-<div id="layoutSidenav">
-
-    <div id="layoutSidenav_content">
-        <main>
-            <div class="container-fluid px-4">
-                <h1 class="mt-3">Report</h1>
-                <ol class="breadcrumb mb-4"></ol>
-                <div class="btn-group">
-                    <button id="btnGroupVerticalDrop1" style="font-size:130%;font-weight:bold" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        Type of report
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="btnGroupVerticalDrop1">
-                        <li><a @Html.ActionLink("appointment report", "Report", "Report")</a></li>
-                        <li><a @Html.ActionLink("clinic report", "Report", "Report")</a></li>
-                        <li><a @Html.ActionLink("customer report", "Report", "Report")</a></li>
-                        <li><a @Html.ActionLink("billings report", "Report", "Report")</a></li>
-                    </ul>
-                </div>
-                <div class="card mb-4">
-
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <i class="fas fa-chart-area me-1"></i>
-                            Area Chart Example
-                        </div>
-                        <div class="card-body"><canvas id="myAreaChart" width="100%" height="30"></canvas></div>
-                        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="card mb-4">
-                                <div class="card-header">
-                                    <i class="fas fa-chart-bar me-1"></i>
-                                    Bar Chart Example
-                                </div>
-                                <div class="card-body"><canvas id="myBarChart" width="100%" height="50"></canvas></div>
-                                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+                    <section class="panel">
+                        <header class="panel-heading" style="font-size:250%">
+                            Report
+                            <br />
+                        </header>
+                        <select id="report" onchange="SelectionChanged(this)" style="float:right">
+                            <option value="">Select Report Type</option>
+                            <option value="1">Appointment Report</option>
+                            <option value="2">Sales Report</option>
+                        </select>
+                        <div class="panel-body">
+                            <div>
+                                @if (ViewBag.Report == "1")
+                                {
+                                    <div class='tableauPlaceholder' id='viz1636030314558' style='position: relative'><noscript><a href='#'><img alt='Dashboard 2 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ap&#47;AppointmentReport_16360302676290&#47;Dashboard2&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz' style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='AppointmentReport_16360302676290&#47;Dashboard2' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ap&#47;AppointmentReport_16360302676290&#47;Dashboard2&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /><param name='filter' value='publish=yes' /></object></div>
+                                    <script type='text/javascript'>var divElement = document.getElementById('viz1636030314558'); var vizElement = divElement.getElementsByTagName('object')[0]; if (divElement.offsetWidth > 800) { vizElement.style.width = '1000px'; vizElement.style.height = '827px'; } else if (divElement.offsetWidth > 500) { vizElement.style.width = '1000px'; vizElement.style.height = '827px'; } else { vizElement.style.width = '100%'; vizElement.style.height = '1127px'; } var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement);</script>
+                                }
+                                else
+                                {
+                                    <div class='tableauPlaceholder' id='viz1636030899331' style='position: relative'><noscript><a href='#'><img alt='Dashboard 4 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Sa&#47;SalesReport_16360303121480&#47;Dashboard4&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz' style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='SalesReport_16360303121480&#47;Dashboard4' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Sa&#47;SalesReport_16360303121480&#47;Dashboard4&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /><param name='filter' value='publish=yes' /></object></div>
+                                    <script type='text/javascript'>var divElement = document.getElementById('viz1636030899331'); var vizElement = divElement.getElementsByTagName('object')[0]; if (divElement.offsetWidth > 800) { vizElement.style.width = '1000px'; vizElement.style.height = '827px'; } else if (divElement.offsetWidth > 500) { vizElement.style.width = '1000px'; vizElement.style.height = '827px'; } else { vizElement.style.width = '100%'; vizElement.style.height = '1177px'; } var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement);</script>
+                                }
                             </div>
                         </div>
-                        <div class="col-lg-6">
-                            <div class="card mb-4">
-                                <div class="card-header">
-                                    <i class="fas fa-chart-pie me-1"></i>
-                                    Pie Chart Example
-                                </div>
-                                <div class="card-body"><canvas id="myPieChart" width="100%" height="50"></canvas></div>
-                                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-                            </div>
-                        </div>
-                    </div>
+
+                    </section>
                 </div>
-        </main>
+            </main>
+        </div>
     </div>
-</div>
+</section>
+<script>
+     function SelectionChanged(chosen)
+                {
+                    var value = chosen.value;
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-<script src="~/Assets/js/scripts.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-<script src="~/Assets/demo/chart-area-demo.js"></script>
-<script src="~/Assets/demo/chart-bar-demo.js"></script>
-<script src="~/Assets/demo/chart-pie-demo.js"></script>
-
+                    location.href = '@Url.Action("ViewReport", "Report")?Report=' + value;
+             }
+</script>

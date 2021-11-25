@@ -10,18 +10,23 @@
 <link href="~/Assets/css/styles.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
 
+<!-- DataTables -->
+<link rel="stylesheet" href="~/Assets/plugins/fontawesome-free/css/all.min.css">
+<link rel="stylesheet" href="~/Assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="~/Assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+<link rel="stylesheet" href="~/Assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+<link href="~/Assets/css/styles.css" rel="stylesheet" />
+
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="index.html">Health4U | Admin</a>
+        @Html.ActionLink("Health4U | Admin", "index", "Home", null, new { @class = "navbar-brand ps-3" })
+
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
         <!-- Navbar Search-->
         <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-            <div class="input-group">
-                <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
-            </div>
+
         </form>
         <!-- Navbar-->
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
@@ -29,7 +34,12 @@
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                     <li><hr class="dropdown-divider" /></li>
-                    <li><a class="dropdown-item" href="#!">Logout</a></li>
+                    <li class="dropdown-item">
+                        <a href="@Url.Action("login", "Home")">
+                                <strong>Logout</strong>
+                         
+                        </a>
+                    </li>
                 </ul>
             </li>
         </ul>
@@ -53,3 +63,16 @@
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
+    <!-- DataTables  & Plugins -->
+    <script src="~/Assets/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/Assets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/Assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="~/Assets/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src=".~/Assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="~/Assets/plugins/jszip/jszip.min.js"></script>
+    <script src="~/Assets/plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="~/Assets/plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="~/Assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="~/Assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="~/Assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>

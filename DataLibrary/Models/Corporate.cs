@@ -10,7 +10,7 @@ namespace DataLibrary.Models
 {
     public class Corporate
     {
-        [Display(Name = "Corporate")]
+        [Display(Name = "CorporateID")]
         public string CorporateID { get; set; }
 
         [Display(Name = "Name")]
