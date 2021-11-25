@@ -11,11 +11,27 @@ namespace Health4U_Admin_.Controllers
         // GET: Report
         public ActionResult Report()
         {
+            var Report = "";
+            Report = TempData["Report"] as string;
+            if (Report == "1")
+            {
+                ViewBag.Report = "1";
+            }
+            else
+            {
+                ViewBag.Report = "2";
+            }
+
             return View();
         }
-        public ActionResult Print()
+
+
+        public ActionResult ViewReport(string Report)
         {
-            return View();
-        }
+            TempData["Report"] = Report;
+
+
+            return RedirectToAction("Report");
+      }
     }
 }

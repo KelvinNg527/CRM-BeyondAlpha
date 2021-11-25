@@ -23,9 +23,8 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Home</div>
-                            <a class="nav-link" href="index.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Dashboard
+                            <a >
+                                @Html.ActionLink("Dashboard", "index", "Home", null, new { @class = "nav-link" })
                             </a>
                             <div class="sb-sidenav-menu-heading">Modules</div>
 
@@ -40,11 +39,8 @@
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     @Html.ActionLink("View Rewards", "ViewRewards", "Rewards", null, new { @class = "nav-link" })
+                                    @Html.ActionLink("View Claim Records", "ViewClaimRecords", "Rewards", null, new { @class = "nav-link" })
                                     @Html.ActionLink("Add Rewards", "AddRewards", "Rewards", null, new { @class = "nav-link" })
-                                    @Html.ActionLink("Pending Booking", "PendingBooking", "Rewards", null, new { @class = "nav-link" })
-                                    @Html.ActionLink("Add Booking", "AddBooking", "Rewards", null, new { @class = "nav-link" })
-
-
                                 </nav>
                             </div>
 
@@ -93,7 +89,7 @@
 
                             <a class="nav-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapsePages1"
                                aria-expanded="false" aria-controls="collapsePages1">
-                                <div class="sb-nav-link-icon"><i class="fas fa-money-check"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-person-booth"></i></div>
                                 User
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
@@ -106,7 +102,7 @@
                             <a class="nav-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapsePages3"
                                aria-expanded="false"
                                aria-controls="collapsePages">
-                                <div class="sb-nav-link-icon"><i class="fas fa-money-check"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
                                 Corporate
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
@@ -116,10 +112,23 @@
                                     @Html.ActionLink("Add Corporate", "AddCorporate", "Corporate", null, new { @class = "nav-link" })
                                 </nav>
                             </div>
+                            <a class="nav-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapsePages5"
+                               aria-expanded="false"
+                               aria-controls="collapsePages">
+                                <div class="sb-nav-link-icon"><i class="fas fa-chart-line"></i></div>
+                                Report
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapsePages5" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    @Html.ActionLink("View Report", "Report", "Report", null, new { @class = "nav-link" })
+
+                                </nav>
+                            </div>
                             <a class="nav-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapsePages4"
                                aria-expanded="false"
                                aria-controls="collapsePages">
-                                <div class="sb-nav-link-icon"><i class="fas fa-money-check"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-trash"></i></div>
                                 Blacklist
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
@@ -130,7 +139,7 @@
 
                                 </nav>
                             </div>
-                    
+
 
 
 

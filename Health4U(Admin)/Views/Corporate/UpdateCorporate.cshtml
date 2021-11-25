@@ -6,7 +6,7 @@
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-LXYtQikeOSJJa_XM1D8GbiVBCmyVlJc&libraries=places"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDX7j1S56AuS0H7Pk65yM6croFu5mjuS8Y&libraries=places"></script>
 
 
 <script type="text/javascript">
@@ -88,7 +88,7 @@
                             <div class="form-group">
                                 <a style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;font-size:15px">
                                     @Html.HiddenFor(model => model.CorporateID)
-                                    @Html.LabelFor(model => model.CorporateID, htmlAttributes: new { @class = "control-label col-lg-2", @style = "margin-top:26px" })
+                                    @Html.LabelFor(model => model.CorporateID, htmlAttributes: new { @class = "control-label col-lg-2", @style = "margin-top:26px", @readonly = "readonly" })
                                 </a>
                                 <div class="col-lg-10">
                                     @Html.TextBoxFor(m => m.CorporateID, new { @style = "width:222px", @readonly = "readonly" })
