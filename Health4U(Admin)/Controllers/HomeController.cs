@@ -12,6 +12,7 @@ namespace Health4U_Admin_.Controllers
     {
         public ActionResult login()
         {
+            Session["user"] = null;
             return View();
         }
 
@@ -31,8 +32,10 @@ namespace Health4U_Admin_.Controllers
                             adminDetails.Name, adminDetails.Position);
                         return RedirectToAction("index", "Home");
                     }
+                    ViewBag.MessageError = "Username or Password is wrong!";
                 }
-                
+                ViewBag.MessageError = "Username or Password is wrong!";
+
             }
             ViewBag.MessageError = "Username or Password is wrong!";
             return View();

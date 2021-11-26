@@ -1,0 +1,83 @@
+﻿@model DataLibrary.Models.PersonalDetailsModel
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+@using (Html.BeginForm("PersonalInformation", "Profile", FormMethod.Post))
+{
+    <div id="layoutSidenav">
+
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+                    <section class="panel">
+                        <header class="panel-heading" style="font-size:250%">
+                            Profile
+                        </header>
+                        <br />
+                        <div class="panel-body">
+
+                            <form class="form-horizontal " method="get">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Admin ID</label>
+                                    <div class="col-sm-10">
+                                        @Html.EditorFor(m => m.AdminID, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" style="margin-top: 12px;">Name</label>
+                                    <div class="col-sm-10">
+                                        @Html.EditorFor(m => m.Name, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" style="margin-top: 12px;">Gender</label>
+                                    <div class="col-sm-10">
+                                        @Html.EditorFor(m => m.Gender, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" style="margin-top: 12px;">Position</label>
+                                    <div class="col-sm-10">
+                                        @Html.EditorFor(m => m.Position, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" style="margin-top: 12px;">Current Password</label>
+                                    <div class="col-sm-10">
+                                        @Html.EditorFor(m => m.Password, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" style="margin-top: 12px;">New Password</label>
+                                    <div class="col-sm-10">
+                                        @Html.TextBoxFor(m => m.newPassword, new { htmlAttributes = new { @class = "form-control" } })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" style="margin-top: 12px;">Confrim Password</label>
+                                    <div class="col-sm-10">
+                                        @Html.TextBoxFor(m => m.confrimPassword, new { htmlAttributes = new { @class = "form-control" } })
+                                    </div>
+                                </div>
+
+
+                            </form>
+                            <div class="form-group">
+                                <br />
+                                <div class="col-lg-offset-2 col-lg-10">
+
+                                    <button type="submit" class="btn btn-primary">Update</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <br/>
+                    <br/>
+                    @ViewBag.Message
+                </div>
+            </main>
+        </div>
+    </div>
+}

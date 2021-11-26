@@ -226,6 +226,44 @@ namespace DataLibrary.DataAccees
                 //return new AppointmentModel();
             }
         }
+
+        public static T SelectCor<T>(string sql, T data)
+        {
+            using (var cnn = new MySqlConnection(GetConnectionString()))
+            {
+                if (data is Models.UserModel)
+                {
+                    var model = data as Models.UserModel;
+                    return (T)Convert.ChangeType(cnn.QueryFirstOrDefault<T>(sql,
+                       new { CorporateID = model.CorporateID }), typeof(T));
+                }
+
+                return default(T); //Default
+                //}
+
+                //return new AppointmentModel();
+            }
+        }
+
+        public static T SelectUserA<T>(string sql, T data)
+        {
+            using (var cnn = new MySqlConnection(GetConnectionString()))
+            {
+                var model = data as Models.PersonalDetailsModel;
+
+                if (data is Models.PersonalDetailsModel)
+                {
+                    if (model.AdminID != null)
+                    {
+                        return (T)Convert.ChangeType(cnn.QueryFirstOrDefault<T>(sql,
+                        new { AdminID = model.AdminID}), typeof(T));
+                    }
+
+                }
+
+                return default(T); //Default
+            }
+        }
     }
 }
 

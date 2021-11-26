@@ -90,6 +90,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessLogic\PersonalDetailsProcessor.cs" />
+    <Compile Include="BusinessLogic\UserProcessor.cs" />
     <Compile Include="BusinessLogic\ActivityProcessor.cs" />
     <Compile Include="BusinessLogic\BillingProcessor.cs" />
     <Compile Include="BusinessLogic\CorporateProcessor.cs" />
@@ -97,6 +99,8 @@
     <Compile Include="BusinessLogic\LoginProcessor.cs" />
     <Compile Include="BusinessLogic\RewardsProcessor.cs" />
     <Compile Include="DataAccess\SqlDataAccess.cs" />
+    <Compile Include="Models\PersonalDetailsModel.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\ActivityModel.cs" />
     <Compile Include="Models\Billings.cs" />
     <Compile Include="Models\Blacklist.cs" />

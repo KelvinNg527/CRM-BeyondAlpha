@@ -1,4 +1,6 @@
-﻿@{
+﻿@model DataLibrary.Models.UserModel
+
+@{
     ViewBag.Title = "New User";
 }
 <div id="layoutSidenav">
@@ -11,42 +13,72 @@
                         Add New User
                     </header>
                     <div class="panel-body">
-                        <form class="form-horizontal " method="get">
+                        @using (Html.BeginForm("AddNewUser", "User", FormMethod.Post))
+                        {
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label" style="margin-top: 12px;">User Name</label>
+                                <label class="col-sm-2 control-label" style="margin-top: 12px;">Name</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" id="focusedInput" type="text" value="">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label" style="margin-top: 12px;">Join Date</label>
-                                <div class="col-sm-10">
-                                    <input type="datetime-local" id="birthdaytime" name="birthdaytime">
+                                    @Html.TextBoxFor(m => m.Name, new { htmlAttributes = new { @class = "form-control", autofocus = "autofocus", @required = "required" } })
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" style="margin-top: 12px;">Gender</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" id="focusedInput" type="text" value="">
+                                    @Html.DropDownListFor(m => m.Gender, new List<SelectListItem>
+                       {
+                            new SelectListItem{ Text="--Select--", Value=""},
+                            new SelectListItem{ Text="Female", Value="F"},
+                            new SelectListItem{ Text="Male", Value="M"}}, new { @class = "form-control", @id = "tags", @required = "required" })
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" style="margin-top: 12px;">Specification</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" id="focusedInput" type="text" value="">
+                                    @Html.DropDownListFor(m => m.SpecificationID, new List<SelectListItem>
+                               {
+                                   new SelectListItem{ Text="--Select--", Value=""},
+                                   new SelectListItem{ Text="GP", Value="S100000001"},
+                                   new SelectListItem{ Text="Allergists", Value="S100000002"},
+                                   new SelectListItem { Text = "Dermatologists", Value = "S100000003" },
+                                   new SelectListItem{ Text="Infectious disease doctors", Value="S100000004"},
+                                   new SelectListItem{ Text="Ophthalmologists", Value="S100000005"},
+                                   new SelectListItem{ Text="Obstetrician/Gynecologists", Value="S100000006"},
+                                   new SelectListItem{ Text="Cardiologists", Value="S100000007"},
+                                   new SelectListItem{ Text="Endocrinologists", Value="S100000008"},
+                                   new SelectListItem{ Text="Gastroenterologists", Value="S100000009"},
+                                   new SelectListItem{ Text="Nephrologists", Value="S100000010"},
+                                   new SelectListItem{ Text="Urologists", Value="S100000011"},
+                                   new SelectListItem{ Text="Pulmonologists", Value="S100000012"},
+                                   new SelectListItem{ Text="Otolaryngologists", Value="S100000013"},
+                                   new SelectListItem{ Text="Neurologists", Value="S100000014"},
+                                   new SelectListItem{ Text="Psychiatrists", Value="S100000015"},
+                                   new SelectListItem{ Text="Oncologists", Value="S100000016"},
+                                   new SelectListItem{ Text="Radiologists", Value="S100000017"},
+                                   new SelectListItem{ Text="Rheumatologists", Value="S100000018"},
+                                   new SelectListItem{ Text="General Surgeons", Value="S100000019"},
+                                   new SelectListItem{ Text="Orthopedic Surgeons", Value="S100000020"},
+                                   new SelectListItem{ Text="Cardiac surgeons", Value="S100000021"},
+                                   new SelectListItem{ Text="Anesthesiologists", Value="S100000022"},
+                                   new SelectListItem{ Text="Others", Value="S100000023"} },
+                                new { @class = "form-control", @id = "tags", @required = "required" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" style="margin-top: 12px;">Corporate ID</label>
+                                <div class="col-sm-10">
+                                    @Html.TextBoxFor(m => m.CorporateID, new { htmlAttributes = new { @class = "form-control", autofocus = "autofocus", @required = "required" } })
                                 </div>
                             </div>
 
-
-
-                        </form>
-                        <div class="form-group">
-                            <div class="col-lg-offset-2 col-lg-10">
-                                <button class="btn-success" style="text-align:center;margin-left: 35%;" type="button">Add</button>
+                            <div class="form-group">
+                                <div class="col-lg-offset-2 col-lg-10">
+                                    <button class="btn-success" style="text-align:center;margin-left: 35%;" type="submit">Add</button>
+                                </div>
                             </div>
-                        </div>
+                            <br />
+                            @ViewBag.Message
+                        }
                     </div>
                 </section>
             </div>

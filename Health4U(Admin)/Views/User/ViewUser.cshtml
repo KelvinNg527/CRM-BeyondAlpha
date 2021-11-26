@@ -1,5 +1,7 @@
-﻿@{
-    ViewBag.Title = "View User";
+﻿@model List<DataLibrary.Models.UserModel>
+
+@{
+    ViewBag.Title = "View User (Doctor)";
 }
 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
 <link href="~/Assets/css/styles2.css" rel="stylesheet" />
@@ -18,216 +20,38 @@
                 <div class="card mb-4">
                     <div class="card-header">
                         <i class="fas fa-table me-1"></i>
-                        View User
+                        View Doctor User
                     </div>
                     <div class="card-body">
                         <table id="datatablesSimple">
                             <thead>
                                 <tr>
-                                    <th>User ID</th>
                                     <th>Name</th>
-                                    <th>Join Date</th>
+                                    <th>Corporate Name</th>
                                     <th>Gender</th>
-                                    <th>Specification</th>
-                                    <th>Action</th>
+                                    <th>Password</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>D00001</td>
-                                    <td>Cheah Ker Xin</td>
-                                    <td>10/10/2019</td>
-                                    <td>F</td>
-                                    <td> </td>
-                                    <td>
-                                        <div class="btn-group">
-                                            <a class="btn btn-primary" href="#"><i class="fa fa-edit"></i></a>
-                                            <a class="btn btn-danger" href="#"><i class="fa fa-trash"></i></a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>D00002</td>
-                                    <td>Cheah Ker Xing</td>
-                                    <td>10/10/2019</td>
-                                    <td>F</td>
-                                    <td>Cardiologist </td>
-                                    <td>
-                                        <div class="btn-group">
-                                            <a class="btn btn-primary" href="#"><i class="fa fa-edit"></i></a>
-                                            <a class="btn btn-danger" href="#"><i class="fa fa-trash""></i></a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>D00003</td>
-                                    <td>Goh Li Ying</td>
-                                    <td>10/10/2019</td>
-                                    <td>F</td>
-                                    <td>Cardiologist </td>
-                                    <td>
-                                        <div class="btn-group">
-                                            <a class="btn btn-primary" href="#"><i class="fa fa-edit"></i></a>
-                                            <a class="btn btn-danger" href="#"><i class="fa fa-trash""></i></a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>D00004</td>
-                                    <td>Cheah Min Wei</td>
-                                    <td>10/10/2019</td>
-                                    <td>M</td>
-                                    <td>Dermatologist</td>
-                                    <td>
-                                        <div class="btn-group">
-                                            <a class="btn btn-primary" href="#"><i class="fa fa-edit"></i></a>
-                                            <a class="btn btn-danger" href="#"><i class="fa fa-trash"></i></a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>D00002</td>
-                                    <td>Cheah Ker Xing</td>
-                                    <td>10/10/2019</td>
-                                    <td>F</td>
-                                    <td>Cardiologist </td>
-                                    <td>
-                                        <div class="btn-group">
-                                            <a class="btn btn-primary" href="#"><i class="fa fa-edit"></i></a>
-                                            <a class="btn btn-danger" href="#"><i class="fa fa-trash"></i></a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>D00003</td>
-                                    <td>Goh Li Ying</td>
-                                    <td>10/10/2019</td>
-                                    <td>F</td>
-                                    <td>Cardiologist </td>
-                                    <td>
-                                        <div class="btn-group">
-                                            <a class="btn btn-primary" href="#"><i class="fa fa-edit"></i></a>
-                                            <a class="btn btn-danger" href="#"><i class="fa fa-trash"></i></a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>D00001</td>
-                                    <td>Cheah Ker Xin</td>
-                                    <td>10/10/2019</td>
-                                    <td>F</td>
-                                    <td> </td>
-                                    <td>
-                                        <div class="btn-group">
-                                            <a class="btn btn-primary" href="#"><i class="fa fa-edit"></i></a>
-                                            <a class="btn btn-danger" href="#"><i class="fa fa-trash"></i></a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>D00002</td>
-                                    <td>Cheah Ker Xing</td>
-                                    <td>10/10/2019</td>
-                                    <td>F</td>
-                                    <td>Cardiologist </td>
-                                    <td>
-                                        <div class="btn-group">
-                                            <a class="btn btn-primary" href="#"><i class="fa fa-edit"></i></a>
-                                            <a class="btn btn-danger" href="#"><i class="fa fa-trash"></i></a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>D00003</td>
-                                    <td>Goh Li Ying</td>
-                                    <td>10/10/2019</td>
-                                    <td>F</td>
-                                    <td>Cardiologist </td>
-                                    <td>
-                                        <div class="btn-group">
-                                            <a class="btn btn-primary" href="#"><i class="fa fa-edit"></i></a>
-                                            <a class="btn btn-danger" href="#"><i class="fa fa-trash"></i></a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>D00001</td>
-                                    <td>Cheah Ker Xin</td>
-                                    <td>10/10/2019</td>
-                                    <td>F</td>
-                                    <td> </td>
-                                    <td>
-                                        <div class="btn-group">
-                                            <a class="btn btn-primary" href="#"><i class="fa fa-edit"></i></a>
-                                            <a class="btn btn-danger" href="#"><i class="fa fa-trash"></i></a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>D00002</td>
-                                    <td>Cheah Ker Xing</td>
-                                    <td>10/10/2019</td>
-                                    <td>F</td>
-                                    <td>Cardiologist </td>
-                                    <td>
-                                        <div class="btn-group">
-                                            <a class="btn btn-primary" href="#"><i class="fa fa-edit"></i></a>
-                                            <a class="btn btn-danger" href="#"><i class="fa fa-trash"></i></a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>D00003</td>
-                                    <td>Goh Li Ying</td>
-                                    <td>10/10/2019</td>
-                                    <td>F</td>
-                                    <td>Cardiologist </td>
-                                    <td>
-                                        <div class="btn-group">
-                                            <a class="btn btn-primary" href="#"><i class="fa fa-edit"></i></a>
-                                            <a class="btn btn-danger" href="#"><i class="fa fa-trash"></i></a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>D00001</td>
-                                    <td>Cheah Ker Xin</td>
-                                    <td>10/10/2019</td>
-                                    <td>F</td>
-                                    <td> </td>
-                                    <td>
-                                        <div class="btn-group">
-                                            <a class="btn btn-primary" href="#"><i class="fa fa-edit"></i></a>
-                                            <a class="btn btn-danger" href="#"><i class="fa fa-trash"></i></a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>D00002</td>
-                                    <td>Cheah Ker Xing</td>
-                                    <td>10/10/2019</td>
-                                    <td>F</td>
-                                    <td>Cardiologist </td>
-                                    <td>
-                                        <div class="btn-group">
-                                            <a class="btn btn-primary" href="#"><i class="fa fa-edit"></i></a>
-                                            <a class="btn btn-danger" href="#"><i class="fa fa-trash"></i></a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>D00003</td>
-                                    <td>Goh Li Ying</td>
-                                    <td>10/10/2019</td>
-                                    <td>F</td>
-                                    <td>Cardiologist </td>
-                                    <td>
-                                        <div class="btn-group">
-                                            <a class="btn btn-primary" href="#"><i class="fa fa-edit"></i></a>
-                                            <a class="btn btn-danger" href="#"><i class="fa fa-trash"></i></a>
-                                        </div>
-                                    </td>
-                                </tr>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.cName)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Gender)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.DPassword)
+                                        </td>
+
+                                    </tr>
+                                }
                             </tbody>
                         </table>
                     </div>

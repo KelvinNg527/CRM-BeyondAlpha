@@ -199,6 +199,7 @@
     <Compile Include="Controllers\CorporateController.cs" />
     <Compile Include="Controllers\DiseasesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\RewardsController.cs" />
     <Compile Include="Controllers\SubscriptionController.cs" />
@@ -2245,6 +2246,8 @@
     <Content Include="Views\Blacklist\AddBlacklist.cshtml" />
     <Content Include="Views\Activity\PendingActivity.cshtml" />
     <Content Include="Views\Activity\Details.cshtml" />
+    <Content Include="Views\User\ViewUser.cshtml" />
+    <Content Include="Views\Profile\PersonalInformation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
