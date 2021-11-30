@@ -1,33 +1,106 @@
-﻿<section class="content-header">
-  
+﻿@model IEnumerable<DataLibrary.Models.ProjectModel>
 
-</section>
-<!-- Main content -->
-<section class="content container-fluid">
-    <!--------------------------
-    | Your Page Content Here |
-    -------------------------->
-    <div id="layoutSidenav">
 
-        <div id="layoutSidenav_content">
-            <main>
-                <div class="container-fluid px-4">
-                    <section class="panel">
-                        <header class="panel-heading" style="font-size:250%">
-                            Dashboard
-                            <br />
-                        </header>
-                        <div class="panel-body">
-                            <div>
-                                <div class='tableauPlaceholder' id='viz1636030421051' style='position: relative'><noscript><a href='#'><img alt='Dashboard 3 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;M5&#47;M5JBZDF2W&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz' style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='path' value='shared&#47;M5JBZDF2W' /> <param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;M5&#47;M5JBZDF2W&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /><param name='filter' value='publish=yes' /></object></div>
-                                <script type='text/javascript'>var divElement = document.getElementById('viz1636030421051'); var vizElement = divElement.getElementsByTagName('object')[0]; if (divElement.offsetWidth > 800) { vizElement.style.width = '1000px'; vizElement.style.height = '827px'; } else if (divElement.offsetWidth > 500) { vizElement.style.width = '1000px'; vizElement.style.height = '827px'; } else { vizElement.style.width = '100%'; vizElement.style.height = '827px'; } var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement);</script>
 
-                            </div>
-                            </div>
-                       
-                    </section>
+<div id="layoutSidenav">
+
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4">
+                <h1 class="mt-3">Task Overview</h1>
+                <ol class="breadcrumb mb-4"></ol>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-table me-1"></i>
+                        HOME
                     </div>
-                </main>
+                    <div class="card-body">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Project ID</th>
+                                    <th>Project Title</th>
+                                    <th>Progress (%)</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.project_ID)
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.project_Title)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.project_Progress)
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.project_Status)
+                                    </td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <a href="@Url.Action("Details", "Project", routeValues: new { id = item.project_ID })">
+                                                <button type="button" class="btn btn-outline-dark">
+                                                    <span class="fa fa-eye"></span>
+                                                </button>
+                                            </a>
+                                            <a href="@Url.Action("EditDetails", "Project", routeValues: new { id = item.project_ID })">
+                                                <button type="button" class="btn btn-outline-dark">
+                                                    <span class="fa fa-edit"></span>
+                                                </button>
+                                            </a>
+                                        </div>
+                                    </td>
+
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
+
+        </main>
+
+    </div>
+</div>
+<!-- /.card -->
+<!-- /.container-fluid -->
+<!-- jQuery -->
+<script src="~/Assets/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="~/Assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- AdminLTE App -->
+<!-- AdminLTE for demo purposes -->
+<!-- Page specific script -->
+<script>
+    $(function () {
+        $("#example1").DataTable({
+            "responsive": true, "lengthChange": false, "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
+    });
+</script>
+
+
+
+

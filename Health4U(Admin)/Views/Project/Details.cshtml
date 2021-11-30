@@ -1,0 +1,168 @@
+﻿@model DataLibrary.Models.ProjectModel
+@{
+    string projectID = Model.project_ID;
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+<style>
+    fieldset.scheduler-border {
+        border: 1px groove #ddd !important;
+        padding: 0 1.4em 1.4em 1.4em !important;
+        margin: 0 0 1.5em 0 !important;
+        -webkit-box-shadow: 0px 0px 0px 0px #000;
+        box-shadow: 0px 0px 0px 0px #000;
+        margin-top: 30px !important;
+    }
+
+    legend.scheduler-border {
+        font-size: 1.2em !important;
+        font-weight: bold !important;
+        text-align: left !important;
+        width: auto;
+        padding: 0 10px;
+        border-bottom: none;
+        margin-top: -15px;
+        background-color: white;
+        color: black;
+    }
+</style>
+@using (Html.BeginForm("Details", "Project", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div id="layoutSidenav">
+
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+                    <section class="panel">
+                        @*<header class="panel-heading" style="font-size:250%">
+                            @Html.DisplayFor(model => model.project_ID, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        </header>*@
+                        <div class="panel-body">
+                            <form class="form-horizontal " method="get">
+
+                                <div class="container">
+                                    <fieldset class="scheduler-border">
+                                        <legend class="scheduler-border">@projectID</legend>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label" style="margin-top: 12px;text-decoration-line:underline">Description</label>
+                                            <div class="col-sm-10">
+                                                @Html.DisplayFor(model => model.project_Desc, new { htmlAttributes = new { @class = "form-control" } })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label" style="margin-top: 12px;text-decoration-line:underline">Start Dates</label>
+                                            <div class="col-sm-10">
+                                                @Html.DisplayFor(model => model.project_StartDate, new { htmlAttributes = new { @class = "form-control" } })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label" style="margin-top: 12px;text-decoration-line:underline">End Date</label>
+                                            <div class="col-sm-10">
+                                                @Html.DisplayFor(model => model.project_EndDate, new { htmlAttributes = new { @class = "form-control" } })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label" style="margin-top: 12px;text-decoration-line:underline">Status</label>
+                                            <div class="col-sm-10">
+                                                @Html.DisplayFor(model => model.project_Status, new { htmlAttributes = new { @class = "form-control" } })
+                                            </div>
+                                        </div>
+
+                                    </fieldset>
+                                </div>
+                                <fieldset class="scheduler-border" style="float:right">
+                                    <legend class="scheduler-border">Task</legend>
+                                    <div class="form-group">
+                                        <br />
+                                        <div style="padding-left:20em">
+
+                                            <td >
+                                                <input type="button" class="btn btn-primary" value="Add"
+                                                       onclick="location.href='@Url.Action("AddTask", "Project", routeValues: new { id =@projectID})'" />
+                                            </td>
+                                            </div>
+                                            <label class="col-sm-2 control-label"></label>
+                                            <div class="col-sm-11">
+                                                <table style="width:50%" class="table table-bordered table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Task ID</th>
+                                                            <th>Task Title</th>
+                                                            <th>Task Status</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach (var item in ViewBag.TaskList.TaskList)
+                                                        {
+                                                            <tr>
+                                                                <td>
+                                                                    <p><b>@item.task_ID</b></p>
+                                                                </td>
+                                                                <td>
+                                                                    <p><b>@item.task_Title</b></p>
+                                                                </td>
+                                                                <td>
+                                                                    <p><b>@item.task_Status</b></p>
+                                                                </td>
+                                                                <td>
+                                                                    <input type="button" class="btn btn-secondary" value="Edit"
+                                                                           onclick="location.href='@Url.Action("TaskDetail", "Project", routeValues: new { id =@item.task_ID})'" />
+                                                                </td>
+                                                                <td>
+                                                                    <input type="button" class="btn btn-danger" value="Delete"
+                                                                           onclick="location.href='@Url.Action("DeleteTask", "Project", routeValues: new { id =@item.task_ID})'" />
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    </tbody>
+
+                                                </table>
+                                            </div>
+                                        </div>
+
+</fieldset>
+
+                                <fieldset class="scheduler-border" style="float:left;width: 346.8px;">
+                                    <legend class="scheduler-border">Team Member</legend>
+                                    <div class="form-group">
+                                        <br />
+
+                                        <label class="col-sm-3 control-label"></label>
+                                        <div class="col-sm-12">
+                                            <table style="width:60%" class="table table-bordered table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Member</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var item in ViewBag.AdminList.AdminList)
+                                                    {
+                                                        <tr>
+                                                            <td>
+                                                                <p><b>@item.AdminShort</b></p>
+                                                            </td>
+                                                           
+                                                        </tr>
+                                                    }
+                                                </tbody>
+
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                </fieldset>
+
+                            </form>
+                       
+                        </div>
+                    </section>
+                </div>
+            </main>
+        </div>
+    </div>
+}

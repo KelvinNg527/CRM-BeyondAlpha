@@ -5,45 +5,30 @@ using System.Web;
 using System.Web.Mvc;
 using DataLibrary.Models;
 
-namespace Health4U_Admin_.Controllers
+namespace CRM.Controllers
 {
-    using static DataLibrary.BusinessLogic.LoginProcessor;
+    using static DataLibrary.BusinessLogic.TaskProcessor;
     public class HomeController : Controller
     {
-        public ActionResult login()
-        {
-            Session["user"] = null;
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult login(LoginModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                if (model.ID.StartsWith("A"))
-                {
-                    var adminDetails = AdminLogin(model.ID, model.Password);
-                    if (adminDetails != null)
-                    {
-                        Session["position"] = adminDetails.Position;
-
-                        Session["user"] = new LoginModel(adminDetails.ID, adminDetails.Password,
-                            adminDetails.Name, adminDetails.Position);
-                        return RedirectToAction("index", "Home");
-                    }
-                    ViewBag.MessageError = "Username or Password is wrong!";
-                }
-                ViewBag.MessageError = "Username or Password is wrong!";
-
-            }
-            ViewBag.MessageError = "Username or Password is wrong!";
-            return View();
-        }
+        // GET: Rewards
         public ActionResult Index()
         {
-            return View();
+            List<ProjectModel> Task = new List<ProjectModel>();
+            var data = LoadProject();
+
+            foreach (var row in data)
+            {
+                Task.Add(new ProjectModel
+                {
+                    project_ID = row.project_ID,
+                   project_Title=row.project_Title,
+                   project_Progress=row.project_Progress,
+                   project_Status=row.project_Status
+                });
+            }
+
+            return View(Task);
         }
-        
+
     }
 }

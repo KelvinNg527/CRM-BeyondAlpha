@@ -1,187 +1,187 @@
-﻿using System;
-using DataLibrary.Models;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿//using system;
+//using datalibrary.models;
+//using system.collections.generic;
+//using system.linq;
+//using system.web;
+//using system.web.mvc;
 
-namespace Health4U_Admin_.Controllers
-{
-    using static DataLibrary.BusinessLogic.RewardsProcessor;
+//namespace health4u_admin_.controllers
+//{
+//    using static datalibrary.businesslogic.taskprocessor;
 
-    public class RewardsController : Controller
-    {
+//    public class rewardscontroller : controller
+//    {
 
-        public ActionResult AddRewards()
-        {
-            var recordsBloodType = LoadBloodType().ToList();
-            SelectList BloodType = new SelectList(recordsBloodType, "BloodTypeID", "BloodTypeCb");
-            ViewBag.BloodType = BloodType;
+//        public actionresult addrewards()
+//        {
+//            var recordsbloodtype = loadbloodtype().tolist();
+//            selectlist bloodtype = new selectlist(recordsbloodtype, "bloodtypeid", "bloodtypecb");
+//            viewbag.bloodtype = bloodtype;
 
-            return View();
-        }
+//            return view();
+//        }
 
-        [HttpPost]
-        public ActionResult AddRewards(Rewards model)
-        {
-            List<Rewards> Bill = new List<Rewards>();
-            Rewards app = new Rewards();
+//        [httppost]
+//        public actionresult addrewards(rewards model)
+//        {
+//            list<rewards> bill = new list<rewards>();
+//            rewards app = new rewards();
 
-            var data = LoadRewards();
+//            var data = loadrewards();
 
-            if (model.IsGovernment == true)
-            {
-                var lastGRewardsID = data.AsQueryable().OrderByDescending(c => c.RewardID).Where(x => x.IsGovernment == true).FirstOrDefault();
+//            if (model.isgovernment == true)
+//            {
+//                var lastgrewardsid = data.asqueryable().orderbydescending(c => c.rewardid).where(x => x.isgovernment == true).firstordefault();
 
-                if (lastGRewardsID == null)
-                {
-                    app.RewardID = "G001";
-                }
-                else
-                {
-                    app.RewardID = "G" + (Convert.ToInt32(lastGRewardsID.RewardID.Substring
-                        (1, lastGRewardsID.RewardID.Length - 1)) + 1).ToString("D3");
-                }
-                int recordsCreated = CreateReward(app.RewardID,
-             model.Description,model.IsGovernment,model.Note,model.BloodTypeID,
-             model.MinRequirement, model.PhysicalLocation,
-              model.MaxClaim);
-            }
-            else
-            {
-                var lastPRewardsID = data.AsQueryable().OrderByDescending(c => c.RewardID).Where(x => x.IsGovernment == false).FirstOrDefault();
-                if (lastPRewardsID == null)
-                {
-                    app.RewardID = "P001";
-                }
-                else
-                {
-                    app.RewardID = "P" + (Convert.ToInt32(lastPRewardsID.RewardID.Substring
-                        (1, lastPRewardsID.RewardID.Length - 1)) + 1).ToString("D3");
-                }
-                int recordsCreated = CreateReward(app.RewardID,
-             model.Description, model.IsGovernment, model.Note, model.BloodTypeID,
-             model.MinRequirement, model.PhysicalLocation,
-              model.MaxClaim);
-            }
-
-
-          
-            return RedirectToAction("ViewRewards");
-
-        }
-        // GET: Rewards
-        public ActionResult ViewRewards()
-        {
-        List<Rewards> Rewards = new List<Rewards>();
-            var data = LoadRewards();
-
-            foreach (var row in data)
-            {
-                Rewards.Add(new Rewards
-                {
-                    RewardID = row.RewardID,
-                    IsActive = row.IsActive,
-                    Description = row.Description,
-                    IsGovernment = row.IsGovernment,
-                    Note = row.Note,
-                    MinRequirement = row.MinRequirement,
-                    PhysicalLocation = row.PhysicalLocation,
-                    MaxClaim = row.MaxClaim,
-                    BloodTypeID = row.BloodTypeID,
-                    BloodType=row.BloodType,
-                    BloodVolume=row.BloodVolume
-         
-                });
-            }
-
-            return View(Rewards);
-        }
-
-     
-
-        [HttpGet]
-        public ActionResult RDetails(string id)
-        {
-            if (ModelState.IsValid)
-            {
-
-                var recordsSelected = SelectRewards(id);
-                var recordsBloodType = LoadBloodType().ToList();
-                SelectList BloodType = new SelectList(recordsBloodType, "BloodTypeID", "BloodTypeCb");
-                ViewBag.BloodType = BloodType;
- 
-
-                var model = new Rewards()
-                {
-                    RewardID=recordsSelected.RewardID,
-                    IsActive=recordsSelected.IsActive,
-                    Description=recordsSelected.Description,
-                    IsGovernment=recordsSelected.IsGovernment,
-                    Note=recordsSelected.Note,
-                    BloodType=recordsSelected.BloodType,
-                    MinRequirement=recordsSelected.MinRequirement,
-                    PhysicalLocation=recordsSelected.PhysicalLocation,
-                    MaxClaim=recordsSelected.MaxClaim
-                };
+//                if (lastgrewardsid == null)
+//                {
+//                    app.rewardid = "g001";
+//                }
+//                else
+//                {
+//                    app.rewardid = "g" + (convert.toint32(lastgrewardsid.rewardid.substring
+//                        (1, lastgrewardsid.rewardid.length - 1)) + 1).tostring("d3");
+//                }
+//                int recordscreated = createreward(app.rewardid,
+//             model.description, model.isgovernment, model.note, model.bloodtypeid,
+//             model.minrequirement, model.physicallocation,
+//              model.maxclaim);
+//            }
+//            else
+//            {
+//                var lastprewardsid = data.asqueryable().orderbydescending(c => c.rewardid).where(x => x.isgovernment == false).firstordefault();
+//                if (lastprewardsid == null)
+//                {
+//                    app.rewardid = "p001";
+//                }
+//                else
+//                {
+//                    app.rewardid = "p" + (convert.toint32(lastprewardsid.rewardid.substring
+//                        (1, lastprewardsid.rewardid.length - 1)) + 1).tostring("d3");
+//                }
+//                int recordscreated = createreward(app.rewardid,
+//             model.description, model.isgovernment, model.note, model.bloodtypeid,
+//             model.minrequirement, model.physicallocation,
+//              model.maxclaim);
+//            }
 
 
-                return View(model);
-            }
 
-            return RedirectToAction("ViewRewards");
-        }
+//            return redirecttoaction("viewrewards");
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult RDetails(Rewards model)
-        {
+//        }
+//        get: rewards
+//        public actionresult viewrewards()
+//        {
+//            list<rewards> rewards = new list<rewards>();
+//            var data = loadrewards();
 
-            if (model != null)
-            {
-                int recordsUpdated =
-                    UpdateRewards(model.RewardID,
-                 model.IsActive,
-                 model.Description, model.Note, model.BloodTypeID,
-                 model.MinRequirement,model.MaxClaim,model.PhysicalLocation);
-                return RedirectToAction("ViewRewards");
-            }
-            return View(model);
-        }
+//            foreach (var row in data)
+//            {
+//                rewards.add(new rewards
+//                {
+//                    rewardid = row.rewardid,
+//                    isactive = row.isactive,
+//                    description = row.description,
+//                    isgovernment = row.isgovernment,
+//                    note = row.note,
+//                    minrequirement = row.minrequirement,
+//                    physicallocation = row.physicallocation,
+//                    maxclaim = row.maxclaim,
+//                    bloodtypeid = row.bloodtypeid,
+//                    bloodtype = row.bloodtype,
+//                    bloodvolume = row.bloodvolume
 
-        [ValidateInput(false)]
-        public ActionResult DeleteReward(string id)
-        {
+//                });
+//            }
 
-            if (ModelState.IsValid)
-            {
+//            return view(rewards);
+//        }
 
-                var recordsDelete = DeleteRewards(id);
 
-                return RedirectToAction("ViewRewards");
-            }
-            return RedirectToAction("ViewRewards");
-        }
 
-        public ActionResult ViewClaimRecords()
-        {
-            List<claim_rewards_records> Rewards = new List<claim_rewards_records>();
-            var data = LoadClaimedRewards();
+//        [httpget]
+//        public actionresult rdetails(string id)
+//        {
+//            if (modelstate.isvalid)
+//            {
 
-            foreach (var row in data)
-            {
-                Rewards.Add(new claim_rewards_records
-                {
-                    UserID=row.UserID,
-                    AppointmentID=row.AppointmentID,
-                    CompletionTime=row.CompletionTime,
-                    RewardID=row.RewardID,
-                    ClaimTime=row.ClaimTime
-                });
-            }
+//                var recordsselected = selectrewards(id);
+//                var recordsbloodtype = loadbloodtype().tolist();
+//                selectlist bloodtype = new selectlist(recordsbloodtype, "bloodtypeid", "bloodtypecb");
+//                viewbag.bloodtype = bloodtype;
 
-            return View(Rewards);
-        }
 
-    }
-}
+//                var model = new rewards()
+//                {
+//                    rewardid = recordsselected.rewardid,
+//                    isactive = recordsselected.isactive,
+//                    description = recordsselected.description,
+//                    isgovernment = recordsselected.isgovernment,
+//                    note = recordsselected.note,
+//                    bloodtype = recordsselected.bloodtype,
+//                    minrequirement = recordsselected.minrequirement,
+//                    physicallocation = recordsselected.physicallocation,
+//                    maxclaim = recordsselected.maxclaim
+//                };
+
+
+//                return view(model);
+//            }
+
+//            return redirecttoaction("viewrewards");
+//        }
+
+//        [httppost]
+//        [validateantiforgerytoken]
+//        public actionresult rdetails(rewards model)
+//        {
+
+//            if (model != null)
+//            {
+//                int recordsupdated =
+//                    updaterewards(model.rewardid,
+//                 model.isactive,
+//                 model.description, model.note, model.bloodtypeid,
+//                 model.minrequirement, model.maxclaim, model.physicallocation);
+//                return redirecttoaction("viewrewards");
+//            }
+//            return view(model);
+//        }
+
+//        [validateinput(false)]
+//        public actionresult deletereward(string id)
+//        {
+
+//            if (modelstate.isvalid)
+//            {
+
+//                var recordsdelete = deleterewards(id);
+
+//                return redirecttoaction("viewrewards");
+//            }
+//            return redirecttoaction("viewrewards");
+//        }
+
+//        public actionresult viewclaimrecords()
+//        {
+//            list<claim_rewards_records> rewards = new list<claim_rewards_records>();
+//            var data = loadclaimedrewards();
+
+//            foreach (var row in data)
+//            {
+//                rewards.add(new claim_rewards_records
+//                {
+//                    userid = row.userid,
+//                    appointmentid = row.appointmentid,
+//                    completiontime = row.completiontime,
+//                    rewardid = row.rewardid,
+//                    claimtime = row.claimtime
+//                });
+//            }
+
+//            return view(rewards);
+//        }
+
+//    }
+//}
