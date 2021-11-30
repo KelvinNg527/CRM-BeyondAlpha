@@ -70,7 +70,7 @@ namespace CRM.Controllers
             }
             else
             {
-                app.task_ID = "T" + (Convert.ToInt32(lastTask.project_ID.Substring
+                app.task_ID = "T" + (Convert.ToInt32(lastTask.task_ID.Substring
                     (1, lastTask.task_ID.Length - 1)) + 1).ToString("D3");
             }
             int recordsCreated = CreateTask(app.task_ID, content,
