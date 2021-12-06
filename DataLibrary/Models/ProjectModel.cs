@@ -9,6 +9,8 @@ namespace DataLibrary.Models
 {
     public class ProjectModel
     {
+        public string admin_ID { get; set; }
+
         [Display(Name = "Project ID")]
         public string project_ID { get; set; }
         [Display(Name = "Project Title")]

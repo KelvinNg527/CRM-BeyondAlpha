@@ -21,6 +21,7 @@ namespace CRM.Controllers
                 Task.Add(new ProjectModel
                 {
                     project_ID = row.project_ID,
+                    project_Desc=row.project_Desc,
                    project_Title=row.project_Title,
                    project_Progress=row.project_Progress,
                    project_Status=row.project_Status

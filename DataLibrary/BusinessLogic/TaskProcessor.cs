@@ -41,11 +41,16 @@ namespace DataLibrary.BusinessLogic
         public static List<Admin> SelectTaskAdmin(string project_ID)
         {
 
-            string sql = $@"SELECT tm.project_ID,tm.task_MemberID,ad.admin_id,ad.admin_name FROM task_management tm JOIN admin ad on tm.task_MemberID=ad.admin_id
+            string sql = $@"SELECT distinct tm.project_ID,tm.task_MemberID,ad.admin_id,ad.admin_name FROM task_management tm JOIN admin ad on tm.task_MemberID=ad.admin_id
             or tm.task_ManagerID=ad.admin_id where  project_ID='{project_ID}';";
             return SqlDataAccess.LoadData<Admin>(sql);
         }
 
+        public static Admin SelectAdmin(string admin_id)
+        {
+            string sql = @"SELECT * from admin where admin_id=@admin_id;";
+            return SqlDataAccess.SelectAdminID<Admin>(sql, new Admin() { admin_id = admin_id });
+        }
 
         public static ProjectModel SelectProject(string project_ID)
         {

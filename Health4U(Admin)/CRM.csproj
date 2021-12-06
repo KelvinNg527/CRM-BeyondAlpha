@@ -198,6 +198,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\RewardsController.cs" />
@@ -2218,19 +2219,18 @@
     <Content Include="Views\Shared\_MainMenu.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Rewards\ViewRewards.cshtml" />
-    <Content Include="Views\Rewards\AddRewards.cshtml" />
-    <Content Include="Views\Rewards\RDetails.cshtml" />
-    <Content Include="Views\Rewards\ViewClaimRecords.cshtml" />
     <Content Include="Views\Project\AddProject.cshtml" />
     <Content Include="Views\Project\Details.cshtml" />
     <Content Include="Views\Project\EditDetails.cshtml" />
     <Content Include="Views\Project\TaskDetail.cshtml" />
     <Content Include="Views\Project\AddTask.cshtml" />
+    <Content Include="Views\Email\ViewEmail.cshtml" />
+    <Content Include="Views\Email\AddEmail.cshtml" />
+    <Content Include="Views\Email\Details.cshtml" />
+    <Content Include="Views\Email\EditDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

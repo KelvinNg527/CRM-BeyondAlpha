@@ -99,6 +99,22 @@ namespace DataLibrary.DataAccees
                 return default(T);
             }
         }
+
+        public static T SelectAdminID<T>(string sql, T data)
+        {
+            using (var cnn = new MySqlConnection(GetConnectionString()))
+            {
+
+                if (data is Models.Admin)
+                {
+                    var model = data as Admin;
+                    return (T)Convert.ChangeType(cnn.QueryFirst<T>(sql,
+                        new { admin_id = model.admin_id }), typeof(T));
+                }
+
+                return default(T);
+            }
+        }
         public static T SelectTask<T>(string sql, T data)
         {
             using (var cnn = new MySqlConnection(GetConnectionString()))
@@ -114,7 +130,37 @@ namespace DataLibrary.DataAccees
                 return default(T);
             }
         }
+        public static T SelectEmail<T>(string sql, T data)
+        {
+            using (var cnn = new MySqlConnection(GetConnectionString()))
+            {
 
+                if (data is Models.Email)
+                {
+                    var model = data as Email;
+                    return (T)Convert.ChangeType(cnn.QueryFirst<T>(sql,
+                        new { email_ID = model.email_ID }), typeof(T));
+                }
+
+                return default(T);
+            }
+        }
+
+        public static T SelectEmailAdd<T>(string sql, T data)
+        {
+            using (var cnn = new MySqlConnection(GetConnectionString()))
+            {
+
+                if (data is Models.Email)
+                {
+                    var model = data as Email;
+                    return (T)Convert.ChangeType(cnn.QueryFirst<T>(sql,
+                        new { user_email = model.user_email }), typeof(T));
+                }
+
+                return default(T);
+            }
+        }
 
 
 

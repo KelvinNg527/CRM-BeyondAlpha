@@ -93,9 +93,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessLogic\EmailProcessor.cs" />
     <Compile Include="BusinessLogic\TaskProcessor.cs" />
     <Compile Include="DataAccess\SqlDataAccess.cs" />
     <Compile Include="Models\Admin.cs" />
+    <Compile Include="Models\Email.cs" />
     <Compile Include="Models\ProjectModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

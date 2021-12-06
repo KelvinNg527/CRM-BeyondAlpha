@@ -35,10 +35,14 @@
                             </a>
                             <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested">
+                                    @Html.ActionLink("View Project", "index", "Home", null, new { @class = "nav-link" })
+
+                                </nav>
+                                <nav class="sb-sidenav-menu-nested">
                                     @Html.ActionLink("Add Project", "AddProject", "Project", null, new { @class = "nav-link" })
 
                                 </nav>
-                              
+
                             </div>
 
 
@@ -46,18 +50,15 @@
                                aria-expanded="false"
                                aria-controls="collapsePages">
                                 <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
-                                Task
+                                Email
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="collapsePages3" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    @Html.ActionLink("View Task", "ViewCorporate", "Corporate", null, new { @class = "nav-link" })
-                                    @Html.ActionLink("Add Task", "AddCorporate", "Corporate", null, new { @class = "nav-link" })
+                                    @Html.ActionLink("View Email", "ViewEmail", "Email", null, new { @class = "nav-link" })
+                                    @Html.ActionLink("Add Email", "AddEmail", "Email", null, new { @class = "nav-link" })
                                 </nav>
                             </div>
-
-
-
 
                         </div>
                     </div>

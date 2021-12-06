@@ -7,7 +7,10 @@ using DataLibrary.Models;
 
 namespace CRM.Controllers
 {
+    using System.Net;
+    using System.Net.Mail;
     using static DataLibrary.BusinessLogic.TaskProcessor;
+    using static DataLibrary.BusinessLogic.EmailProcessor;
 
     public class ProjectController : Controller
     {
@@ -76,6 +79,47 @@ namespace CRM.Controllers
             int recordsCreated = CreateTask(app.task_ID, content,
          model.task_Title, model.task_Status, model.task_MemberID,model.task_ManagerID);
 
+            if(recordsCreated!=0)
+            {
+                var adminselected = SelectAdmin(model.task_MemberID);
+            try
+            {
+                    if (ModelState.IsValid)
+                    {
+                        var senderEmail = new MailAddress("kelvinng5270@gmail.com", "Admin CRM");
+                        var receiverEmail = new MailAddress(adminselected.admin_emailAddress, adminselected.admin_name);
+                        var password = "52721005272100";
+                        var sub = "Task ID " + app.task_ID + " (" + model.task_Title + ") assigned";
+                        var body = "Dear Sir/Madam," + Environment.NewLine + Environment.NewLine +
+                       "Your task had been assigned with the title of " + model.task_Title + Environment.NewLine+"Please complete your task before deadline. Thanks You!"
+                     + Environment.NewLine + Environment.NewLine +
+                        "Best Regards" + Environment.NewLine + "Admin CRM";
+                        var smtp = new SmtpClient
+                        {
+                            Host = "smtp.gmail.com",
+                            Port = 587,
+                            EnableSsl = true,
+                            DeliveryMethod = SmtpDeliveryMethod.Network,
+                            UseDefaultCredentials = false,
+                            Credentials = new NetworkCredential(senderEmail.Address, password)
+                        };
+                        using (var mess = new MailMessage(senderEmail, receiverEmail)
+                        {
+                            Subject = sub,
+                            Body = body
+                        })
+                        {
+                            smtp.Send(mess);
+                        }
+                    } 
+                }
+            catch (Exception)
+            {
+                ViewBag.Error = "Some Error";
+                    return RedirectToAction("index", "Home");
+
+                }
+            }
             return RedirectToAction("index", "Home");
 
         }
