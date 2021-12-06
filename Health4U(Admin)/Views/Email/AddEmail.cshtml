@@ -6,10 +6,10 @@
 <script type="text/javascript">
 
     function validateData() {
-        if ($("#project_Desc").val() == "") {
+        if ($("#email_Name").val() == "") {
             swal("Project desciption  cannot be null!");
             return false;
-        } else if ($("#project_StartDate").val() == "") {
+        } else if ($("#email_AddressTo").val() == "") {
             swal("Project StartDate cannot be null!");
             return false;
         } else {
@@ -21,7 +21,7 @@
     function Validate(ctl, event) {
         event.preventDefault();
         swal({
-            title: "Do you want to add a Email?",
+            title: "Do you want to add an Email?",
             text: "Please check information before adding !",
             type: "warning",
             showCancelButton: true,
@@ -100,6 +100,15 @@
                             </div>
                             <div class="form-group">
                                 <a style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;font-size:15px">
+                                    @Html.LabelFor(model => model.email_PreviewSubject, htmlAttributes: new { @class = "control-label col-lg-2", @style = "margin-top:26px" })
+                                </a>
+                                <div class="col-lg-10">
+                                    @Html.TextBoxFor(m => m.email_PreviewSubject, new { @style = "width:522px" })
+                                </div>
+                                <br />
+                            </div>
+                            <div class="form-group">
+                                <a style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;font-size:15px">
                                     @Html.LabelFor(model => model.email_Text, htmlAttributes: new { @class = "control-label col-md-2" })
                                 </a>
                                 <div class="col-md-10">
@@ -107,7 +116,7 @@
                                 </div>
                                 <br />
                             </div>
-                   
+
                             <br />
                             <div class="form-group">
                                 <div class="col-lg-offset-2 col-lg-10">

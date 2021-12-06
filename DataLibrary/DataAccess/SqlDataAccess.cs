@@ -65,6 +65,26 @@ namespace DataLibrary.DataAccees
             }
         }
 
+        public static int DeleteEData<T>(string sql, T data)
+        {
+            using (var cnn = new MySqlConnection(GetConnectionString()))
+            {
+                var isSuccess = 0;
+                // cnn.Open();
+                var param = new DynamicParameters();
+                if (data is String)
+                {
+                    param.Add("@id", data);
+                    isSuccess = cnn.Execute(sql, param);
+                }
+                else
+                {
+                    isSuccess = cnn.Execute(sql, data);
+                }
+                return isSuccess;
+            }
+        }
+
         public static int DeleteDData<T>(string sql, T data)
         {
             using (var cnn = new MySqlConnection(GetConnectionString()))

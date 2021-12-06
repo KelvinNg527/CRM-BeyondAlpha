@@ -51,10 +51,17 @@
 
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label" style="margin-top: 12px;text-decoration-line:underline">Content</label>
-                                    <div class="col-sm-10"  style = "width: 522px;">
+                                    <div class="col-sm-10" style="width: 522px;">
                                         @Html.TextAreaFor(model => model.email_Text, new { htmlAttributes = new { rows = "7", cols = "70" } })
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" style="margin-top: 12px;text-decoration-line:underline">Attach Link</label>
+                                    <div class="col-sm-10" style="width: 522px;">
+                                        @Html.TextAreaFor(model => model.email_PreviewSubject, new { htmlAttributes = new { rows = "7", cols = "70" } })
+                                    </div>
+                                </div>
+                            
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label" style="margin-top: 12px;text-decoration-line:underline">isSend</label>
                                     <div class="col-sm-10">

@@ -94,7 +94,7 @@ namespace CRM.Controllers
                     (1, lastEmail.email_ID.Length - 1)) + 1).ToString("D3");
             }
             int recordsCreated = CreateEmail(app.email_ID, model.email_Name,
-         model.email_subject, model.email_AddressFrom, model.email_AddressTo, model.email_Text, false);
+         model.email_subject, model.email_AddressFrom, model.email_AddressTo, model.email_Text,model.email_PreviewSubject, false);
 
             return RedirectToAction("index", "Home");
         }
@@ -112,7 +112,8 @@ namespace CRM.Controllers
                 email_subject = recordsselected.email_subject,
                 email_AddressTo = recordsselected.email_AddressTo,
                 email_Text = recordsselected.email_Text,
-                isSend = recordsselected.isSend
+                isSend = recordsselected.isSend,
+                email_PreviewSubject=recordsselected.email_PreviewSubject
 
             };
 
@@ -130,7 +131,7 @@ namespace CRM.Controllers
             {
                 int recordsupdated =
                    UpdateEmail(model.email_ID, model.email_Name, model.email_subject,
-                model.email_AddressFrom, model.email_AddressTo, model.email_Text, model.isSend);
+                model.email_AddressFrom, model.email_AddressTo, model.email_Text,model.email_PreviewSubject, model.isSend);
 
                 return RedirectToAction("ViewEmail");
             }
@@ -145,7 +146,7 @@ namespace CRM.Controllers
                         var password = infoSelectFrom.user_password;
                         var sub = model.email_subject;
                         var body = "Dear Sir/Madam," + Environment.NewLine + Environment.NewLine +
-                       model.email_Text + Environment.NewLine
+                       model.email_Text + Environment.NewLine+"For more details:"+model.email_PreviewSubject
                      + Environment.NewLine + Environment.NewLine +
                         "Best Regards" + Environment.NewLine + infoSelectFrom.user_nickname;
                         var smtp = new SmtpClient
@@ -212,7 +213,7 @@ namespace CRM.Controllers
             {
                 int recordsupdated =
                     UpdateEmail(model.email_ID, model.email_Name, model.email_subject,
-                 model.email_AddressFrom, model.email_AddressTo, model.email_Text, model.isSend);
+                 model.email_AddressFrom, model.email_AddressTo, model.email_Text,model.email_PreviewSubject, model.isSend);
 
                 return RedirectToAction("ViewEmail");
             }
@@ -224,6 +225,21 @@ namespace CRM.Controllers
             TempData["filter"] = filter;
 
             return RedirectToAction("ViewEmail");
+        }
+
+
+        [ValidateInput(false)]
+        public ActionResult Delete(string id)
+        {
+
+            if (id != null)
+            {
+                var recordDelete = DeleteEmail(id);
+
+                return RedirectToAction("ViewEmail");
+            }
+            return RedirectToAction("ViewEmail");
+
         }
     }
 }

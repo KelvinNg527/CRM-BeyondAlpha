@@ -15,6 +15,7 @@ namespace DataLibrary.Models
         public string email_Name { get; set; }
         [Display(Name = "Email Subject")]
         public string email_subject { get; set; }
+        [Display(Name = "Attack Link")]
         public string email_PreviewSubject { get; set; }
         [Display(Name = "Email From")]
         public string email_AddressFrom { get; set; }

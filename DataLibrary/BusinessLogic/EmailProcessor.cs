@@ -48,7 +48,7 @@ namespace DataLibrary.BusinessLogic
         }
 
         public static int CreateEmail(string email_ID, string email_Name, string email_Subject, string email_AddressFrom
-            ,string email_AddressTo,string email_Text,bool isSend)
+            ,string email_AddressTo,string email_Text,string email_PreviewSubject,bool isSend)
         {
             Email data = new Email
             {
@@ -58,16 +58,17 @@ namespace DataLibrary.BusinessLogic
                 email_AddressFrom=email_AddressFrom,
                 email_AddressTo=email_AddressTo,
                 email_Text=email_Text,
-                isSend=isSend
+                email_PreviewSubject= email_PreviewSubject,
+                isSend =isSend
             };
 
-            string sql = @"insert into automated_email(email_ID,email_Name,email_subject,email_AddressFrom,email_AddressTo,email_Text,isSend)
-            values(@email_ID,@email_Name,@email_subject,@email_AddressFrom,@email_AddressTo,@email_Text,@isSend);";
+            string sql = @"insert into automated_email(email_ID,email_Name,email_subject,email_AddressFrom,email_AddressTo,email_Text,email_PreviewSubject,isSend)
+            values(@email_ID,@email_Name,@email_subject,@email_AddressFrom,@email_AddressTo,@email_Text,@email_PreviewSubject,@isSend);";
             return SqlDataAccess.SaveData(sql, data);
         }
 
         public static int UpdateEmail(string email_ID, string email_Name, string email_subject,
-    string email_AddressFrom, string email_AddressTo, string email_Text, bool isSend)
+    string email_AddressFrom, string email_AddressTo, string email_Text,string email_PreviewSubject, bool isSend)
         {
 
             Email data = new Email
@@ -78,6 +79,7 @@ namespace DataLibrary.BusinessLogic
                 email_AddressFrom = email_AddressFrom,
                 email_AddressTo = email_AddressTo,
                 email_Text = email_Text,
+                email_PreviewSubject= email_PreviewSubject,
                 isSend = isSend
             };
 
@@ -89,6 +91,7 @@ namespace DataLibrary.BusinessLogic
                     email_AddressFrom=@email_AddressFrom,
                     email_AddressTo=@email_AddressTo,
                      email_Text=@email_Text,
+                    email_PreviewSubject=@email_PreviewSubject,
                     isSend=@isSend
                     where email_ID=@email_ID";
 
@@ -110,6 +113,13 @@ namespace DataLibrary.BusinessLogic
                     where email_ID=@email_ID";
 
             return SqlDataAccess.SaveData(sql, data);
+        }
+
+        public static int DeleteEmail(string id)
+        {
+
+            string sql = @"DELETE FROM automated_email WHERE email_id=@id;";
+            return SqlDataAccess.DeleteEData(sql, id);
         }
 
 

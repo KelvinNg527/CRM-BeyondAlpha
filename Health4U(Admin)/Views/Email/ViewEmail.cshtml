@@ -67,7 +67,11 @@
                                                     <span class="fa fa-eye"></span>
                                                 </button>
                                             </a>
-
+                                            <a href="@Url.Action("Delete", "Email", routeValues: new { id = item.email_ID })">
+                                                <button type="button" class="btn btn-outline-dark">
+                                                    <span class="fa fa-trash"></span>
+                                                </button>
+                                            </a>
                                         </div>
                                     </td>
 
